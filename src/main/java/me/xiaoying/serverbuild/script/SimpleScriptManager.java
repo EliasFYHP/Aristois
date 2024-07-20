@@ -1,12 +1,14 @@
 package me.xiaoying.serverbuild.script;
 
 import me.xiaoying.serverbuild.constant.ConfigConstant;
+import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import me.xiaoying.serverbuild.script.interpreter.InterpreterManager;
 import me.xiaoying.serverbuild.script.interpreter.SimpleInterpreterManager;
 import me.xiaoying.serverbuild.script.scripts.ConsoleScript;
 import me.xiaoying.serverbuild.script.scripts.SendScript;
 import me.xiaoying.serverbuild.utils.ServerUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -42,6 +44,10 @@ public class SimpleScriptManager implements ScriptManager {
 
     @Override
     public void performScript(String command, Player player) {
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SBPlugin.getInstance(), () -> callScript(command, player));
+    }
+
+    private void callScript(String command, Player player) {
         command = new VariableFactory(command)
                 .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
                 .player(player)
