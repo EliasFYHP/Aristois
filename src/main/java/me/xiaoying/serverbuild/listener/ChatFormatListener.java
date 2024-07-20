@@ -73,8 +73,10 @@ public class ChatFormatListener implements Listener {
                     break;
                 }
 
-                if (player.isOp() || PlayerUtil.hasPermission(player, "sb.admin", "sb.cf.admin", "sb.cf.jump"))
+                if (player.isOp() || PlayerUtil.hasPermission(player, "sb.admin", "sb.cf.admin", "sb.cf.jump")) {
+                    send = true;
                     return;
+                }
 
                 player.sendMessage(new VariableFactory(ChatFormatConstant.BLACK_TERMS_MESSAGE)
                         .player(player)
