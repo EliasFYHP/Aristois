@@ -1,6 +1,5 @@
 package me.xiaoying.serverbuild.utils;
 
-import me.xiaoying.serverbuild.ServerBuild;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
