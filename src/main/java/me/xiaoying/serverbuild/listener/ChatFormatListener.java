@@ -58,7 +58,7 @@ public class ChatFormatListener implements Listener {
                 if (!StringUtil.match(string, message, 0, 0) && !message.contains(string))
                     continue;
 
-                if (!ChatFormatConstant.BLACK_TERMS_CANCEL)
+                if (ChatFormatConstant.BLACK_TERMS_CANCEL)
                     send = false;
 
                 if (ChatFormatConstant.BLACK_TERMS_FOR_EVERY_BODY) {
