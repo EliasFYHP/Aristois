@@ -4,6 +4,8 @@ import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import me.xiaoying.serverbuild.script.interpreter.InterpreterManager;
 import me.xiaoying.serverbuild.script.interpreter.SimpleInterpreterManager;
+import me.xiaoying.serverbuild.script.scripts.ConsoleScript;
+import me.xiaoying.serverbuild.script.scripts.SendScript;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.entity.Player;
 
@@ -12,6 +14,11 @@ import java.util.*;
 public class SimpleScriptManager implements ScriptManager {
     private final InterpreterManager interpreterManager = new SimpleInterpreterManager();
     private final Map<String, Script> knownScript = new HashMap<>();
+
+    public SimpleScriptManager() {
+        this.registerScript(new SendScript());
+        this.registerScript(new ConsoleScript());
+    }
 
     @Override
     public void registerScript(Script script) {
