@@ -12,7 +12,6 @@ public class FileConfig extends File {
 
     @Override
     public void onLoad() {
-        System.out.println(this.getConfiguration().getString("Setting.Data.Type"));
         ConfigConstant.SETTING_BSTATS = this.getConfiguration().getBoolean("Setting.Bstats");
         ConfigConstant.SETTING_DATA_TYPE = this.getConfiguration().getString("Setting.Data.Type");
         ConfigConstant.SETTING_DATA_SQLITE_DATAPATH = this.getConfiguration().getString("Setting.Data.SQLite.DataPath");
