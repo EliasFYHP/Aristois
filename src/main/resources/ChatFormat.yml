@@ -101,7 +101,7 @@ BlackTerms:
   #若有其他插件注册 ScriptCommand 命令，在本处一样可用
   Script: |-
     console kill %player%
-    send %player% 说 &a素质青年从我做起！
+    send * %player% 说 &a素质青年从我做起！
   #触发提示(删除""内信息则不提示)
   #支持 |-
   Message: "%prefix%&c素质青年,从我做起"
