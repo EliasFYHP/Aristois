@@ -22,12 +22,12 @@ public class PlayerUtil {
      */
     public static boolean hasPermission(Player player, String... permissions) {
         for (String permission : permissions) {
-            if (player.hasPermission(permission))
+            if (!player.hasPermission(permission))
                 continue;
 
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**

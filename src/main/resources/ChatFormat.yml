@@ -1,4 +1,9 @@
 #聊天格式
+#权限
+#sb.admin -> ServerBuild管理员权限
+#sb.cf.admin -> ChatFormat管理员权限
+#sb.cf.jump -> ChatFormat跳过惩罚权限
+#sb.cf.color -> ChatFormat彩色字体权限
 
 #开关
 Enable: false
@@ -77,7 +82,7 @@ Call:
 BlackTerms:
   #开关
   Enable: false
-  #是否惩治所有类型玩家(拥有权限 sb.cf.jump或sb.cf.admin 的玩家及op)
+  #是否惩治所有类型玩家(拥有权限 sb.admin, sb.cf.jump 或 sb.cf.admin 的玩家及op)
   ForEveryBody: false
   #是否阻止玩家发送此条消息
   Cancel: true

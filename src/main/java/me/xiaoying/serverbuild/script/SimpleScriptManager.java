@@ -43,7 +43,7 @@ public class SimpleScriptManager implements ScriptManager {
     @Override
     public void performScript(String command, Player player) {
         command = new VariableFactory(command)
-                .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATAFORAMT)
+                .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
                 .player(player)
                 .color()
                 .toString();
