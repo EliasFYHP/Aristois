@@ -140,7 +140,7 @@ public class YamlUtil {
      * @param path 文件地址
      * @return 子节点列表
      */
-    public static List<String> getChildrenNode(String path) {
+    public static List<String> getNodes(String path) {
         List<String> allNodes = new ArrayList<>();
 
         try {
