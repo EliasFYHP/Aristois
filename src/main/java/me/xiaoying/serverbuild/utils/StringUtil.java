@@ -51,7 +51,6 @@ public class StringUtil {
 
     /**
      * 字符串通配符 ? *<br>
-     * 避免出现无法使用 *, 替代使用 +
      *
      * @param s1 规则
      * @param s2 匹配数据
@@ -68,7 +67,7 @@ public class StringUtil {
         }
         if (s1.charAt(c1) == '?') {
             return match(s1, s2, c1 + 1, c2 + 1);
-        } else if (s1.charAt(c1) == '+') {
+        } else if (s1.charAt(c1) == '*') {
             return match(s1, s2, c1 + 1, c2) || match(s1, s2, c1 + 1, c2 + 1) || match(s1, s2, c1, c2 + 1);
         } else if (s1.charAt(c1) == s2.charAt(c2)) {
             return match(s1, s2, c1 + 1, c2 + 1);
