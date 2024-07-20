@@ -15,7 +15,7 @@ Setting:
     #Mysql 设置
     Mysql:
       #地址
-      Host: "jdbc:mysql://localhost"
+      Host: "localhost"
       #端口
       Port: 3306
       #数据库
