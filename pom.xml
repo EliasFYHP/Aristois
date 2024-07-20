@@ -26,7 +26,7 @@
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <!-- Replace this with your package! -->
-                            <shadedPattern>me.xiaoying.sb</shadedPattern>
+                            <shadedPattern>me.xiaoying.serverbuild</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
