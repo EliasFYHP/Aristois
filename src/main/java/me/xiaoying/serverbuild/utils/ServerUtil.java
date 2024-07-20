@@ -1,7 +1,11 @@
 package me.xiaoying.serverbuild.utils;
 
 import me.xiaoying.serverbuild.ServerBuild;
+import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
+import me.xiaoying.sql.MysqlFactory;
+import me.xiaoying.sql.SqlFactory;
+import me.xiaoying.sql.SqliteFactory;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,10 +22,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * 工具类 服务器
@@ -267,5 +269,33 @@ public class ServerUtil {
     public static Location stringToLocation(Player player, String x, String y, String z) {
 
         return null;
+    }
+
+    public static SqlFactory getSqlFactory() {
+        SqlFactory sqlFactory;
+        switch (ConfigConstant.SETTING_DATA_TYPE.toUpperCase(Locale.ENGLISH)) {
+            default:
+            case "SQLITE":
+                File sqlite = new File(ConfigConstant.SETTING_DATA_SQLITE_DATAPATH);
+                if (!sqlite.getParentFile().exists())
+                    sqlite.getParentFile().mkdirs();
+                if (!sqlite.exists()) {
+                    try {
+                        sqlite.createNewFile();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                sqlFactory = new SqliteFactory(sqlite);
+                break;
+            case "MYSQL":
+                sqlFactory = new MysqlFactory(ConfigConstant.SETTING_DATA_MYSQL_HOST,
+                        ConfigConstant.SETTING_DATA_MYSQL_PORT,
+                        ConfigConstant.SETTING_DATA_MYSQL_DATABASE,
+                        ConfigConstant.SETTING_DATA_MYSQL_USERNAME,
+                        ConfigConstant.SETTING_DATA_MYSQL_PASSWORD);
+                break;
+        }
+        return sqlFactory;
     }
 }
