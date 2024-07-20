@@ -48,11 +48,10 @@ OverallSituation:
     #无权限提示
     MissingPermission: "%prefix%&c没有权限这么做！"
     #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
-    Help:
-      - ""
-      - "&a<-=-=-=-=-=-=-=-=-=-= &e&lServerBuild &a=-=-=-=-=-=-=-=-=-=->"
-      - "&b/sb reload &7重载"
-      - "&b/sb stats &7查看插件状况"
-      - "&b/sb open [function] &7启动功能"
-      - "&b/sb off [function] &7关闭功能"
-      - ""
+    Help: |-
+      
+      &a<-=-=-=-=-=-=-=-=-=-= &e&lServerBuild &a=-=-=-=-=-=-=-=-=-=->
+      &b/sb reload &7重载
+      &b/sb stats &7查看插件状况
+      &b/sb open [function] &7启动功能
+      &b/sb off [function] &7关闭功能
