@@ -20,6 +20,26 @@ public class ServerBuild extends JavaPlugin {
         ServerUtil.sendMessage("&b|感谢您使用这个插件");
         ServerUtil.sendMessage("&b|任何问题可以添加QQ: &a764932129");
         ServerUtil.sendMessage("&b|=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—>");
+        ServerUtil.sendMessage("&b|&6功能状态:");
+        SBPlugin.getModuleManager().getModules().forEach(module -> {
+            if (!module.ready()) {
+                ServerUtil.sendMessage("&b|&r    &a" + module.getName() + "(" + module.getAliasName() + "): " + "&c已关闭");
+                return;
+            }
+            ServerUtil.sendMessage("&b|&r    &a" + module.getName() + "(" + module.getAliasName() + "): " + "&e已开启");
+            module.enable();
+        });
+        ServerUtil.sendMessage("&b|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=->", true);
+        ServerUtil.sendMessage("&b|&6全局配置状态:", true);
+        if (ConfigConstant.OVERALL_SITUATION_ENABLE)
+            ServerUtil.sendMessage("&b|    &a全局词条(Message): &e已开启", true);
+        else
+            ServerUtil.sendMessage("&b|    &a全局词条(Message): &c未开启", true);
+        if (ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE)
+            ServerUtil.sendMessage("&b|    &a全局变量(Variable): &e已开启", true);
+        else
+            ServerUtil.sendMessage("&b|    &a全局变量(Variable): &c未开启", true);
+        ServerUtil.sendMessage("&b|=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—>");
     }
 
     @Override
