@@ -55,7 +55,7 @@ public class ChatFormatListener implements Listener {
         // black terms
         if (ChatFormatConstant.BLACK_TERMS_ENABLE) {
             for (String string : ChatFormatConstant.BLACK_TERMS_TERMS) {
-                if (!StringUtil.match(string, message, 0, 0) && message.contains(string))
+                if (!StringUtil.match(string, message, 0, 0) && !message.contains(string))
                     continue;
 
                 if (!ChatFormatConstant.BLACK_TERMS_CANCEL)
