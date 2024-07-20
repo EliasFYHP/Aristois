@@ -46,7 +46,7 @@ OverallSituation:
     #操作完成
     Complete: "%prefix%&a执行完成!"
     #无权限提示
-    NoPermission: "%prefix%&c没有权限这么做！"
+    MissingPermission: "%prefix%&c没有权限这么做！"
     #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
     Help:
       - ""
