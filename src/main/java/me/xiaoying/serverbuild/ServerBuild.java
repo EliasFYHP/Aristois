@@ -22,6 +22,8 @@ public class ServerBuild extends JavaPlugin {
         ServerUtil.sendMessage("&b|=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—>");
         ServerUtil.sendMessage("&b|&6功能状态:");
         SBPlugin.getModuleManager().getModules().forEach(module -> {
+            module.init();
+
             if (!module.ready()) {
                 ServerUtil.sendMessage("&b|&r    &a" + module.getName() + "(" + module.getAliasName() + "): " + "&c已关闭");
                 return;
