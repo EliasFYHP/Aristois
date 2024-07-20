@@ -9,8 +9,9 @@
     <version>V0.0.1</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -19,16 +20,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.5.3</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <!-- Replace this with your package! -->
-                            <shadedPattern>me.xiaoying.serverbuild</shadedPattern>
-                        </relocation>
-                    </relocations>
+                    <minimizeJar>true</minimizeJar>
                 </configuration>
                 <executions>
                     <execution>
@@ -36,6 +31,22 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>org/**</exclude>
+                                        <exclude>net/**</exclude>
+                                        <exclude>com/**</exclude>
+                                        <exclude>google/**</exclude>
+                                        <exclude>javax/**</exclude>
+                                        <exclude>mojang-translations/**</exclude>
+                                        <exclude>sqlite-jdbc.properties</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -62,13 +73,13 @@
             <artifactId>spigot-api</artifactId>
             <version>1.20.6-R0.1-SNAPSHOT</version>
         </dependency>
-        <!-- bStats-->
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.0</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        &lt;!&ndash; bStats&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.bstats</groupId>-->
+<!--            <artifactId>bstats-bukkit</artifactId>-->
+<!--            <version>3.0.2</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
         <!-- SqlFactory-->
         <dependency>
             <groupId>me.xiaoying</groupId>
