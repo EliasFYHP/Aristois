@@ -55,6 +55,17 @@ public class SimpleScriptManager implements ScriptManager {
                 .placeholder(player)
                 .color()
                 .toString();
+        if (command.endsWith("§r")) {
+            StringBuilder stringBuilder = new StringBuilder();
+            String[] split = command.split("");
+            for (int i = 0; i < split.length; i++) {
+                if (i == split.length - 2)
+                    break;
+
+                stringBuilder.append(split[i]);
+            }
+            command = stringBuilder.toString();
+        }
 
         String[] split = command.split(" ");
         String head = split[0].toUpperCase();
