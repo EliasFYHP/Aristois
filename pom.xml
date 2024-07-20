@@ -69,5 +69,11 @@
             <version>3.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <!-- SqlFactory-->
+        <dependency>
+            <groupId>me.xiaoying</groupId>
+            <artifactId>SqlFactory</artifactId>
+            <version>0.0.2</version>
+        </dependency>
     </dependencies>
 </project>
