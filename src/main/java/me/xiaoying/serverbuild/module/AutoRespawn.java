@@ -12,6 +12,11 @@ public class AutoRespawn extends Module {
     }
 
     @Override
+    public boolean ready() {
+        return false;
+    }
+
+    @Override
     public void init() {
 
     }

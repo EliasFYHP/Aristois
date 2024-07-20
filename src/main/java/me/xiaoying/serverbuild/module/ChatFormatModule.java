@@ -1,5 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
+import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.file.FileChatFormat;
 import me.xiaoying.serverbuild.listener.ChatFormatListener;
 
@@ -15,6 +16,11 @@ public class ChatFormatModule extends Module {
     @Override
     public String getAliasName() {
         return "ChatFormat";
+    }
+
+    @Override
+    public boolean ready() {
+        return ChatFormatConstant.ENABLE;
     }
 
     @Override
