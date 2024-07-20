@@ -50,7 +50,9 @@ public class SimpleScriptManager implements ScriptManager {
     private void callScript(String command, Player player) {
         command = new VariableFactory(command)
                 .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
+                .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
                 .player(player)
+                .placeholder(player)
                 .color()
                 .toString();
 
