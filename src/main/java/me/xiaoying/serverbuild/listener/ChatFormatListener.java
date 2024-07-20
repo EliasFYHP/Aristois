@@ -63,10 +63,12 @@ public class ChatFormatListener implements Listener {
 
                 if (ChatFormatConstant.BLACK_TERMS_FOR_EVERY_BODY) {
                     player.sendMessage(new VariableFactory(ChatFormatConstant.BLACK_TERMS_MESSAGE)
-                            .player(player)
-                            .date(ChatFormatConstant.SETTING_DATEFORMAT)
-                            .color()
-                            .toString());
+                                    .prefix(ChatFormatConstant.SETTING_PREFIX)
+                                    .player(player)
+                                    .date(ChatFormatConstant.SETTING_DATEFORMAT)
+                                    .placeholder(player)
+                                    .color()
+                                    .toString());
                     String[] split = ChatFormatConstant.BLACK_TERMS_SCRIPT.split("\n");
                     for (String s : split)
                         SBPlugin.getScriptManager().performScript(s, player);
