@@ -1,0 +1,5 @@
+name: ServerBuild
+version: 0.0.1
+api-version: 1.13
+main: me.xiaoying.serverbuild.ServerBuild
+author: 筱樱

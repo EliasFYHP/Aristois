@@ -1,0 +1,138 @@
+#聊天格式
+#配置文件注释未标明支持 |- 都视为不支持
+
+#开关
+Enable: false
+
+#设置
+Setting:
+  #%date% 变量格式(如若无法编辑修改，请检查是否在 Config.yml 开启了全局配置)
+  DateFormat: "yyyy/MM/dd-HH:mm:ss"
+  #%prefix% 变量内容(如若无法编辑修改，请检查是否在 Config.yml 开启了全局变量配置)
+  Prefix: "&a[&bChatFormat&a]&e>> "
+
+#格式
+#注: 优先级相同时匹配到的是位居下方的格式
+#    如 admin 优先级为 0, vip 优先级为 0, 而 vip 写在 admin 的后几行，则匹配到的是 vip 格式
+Formats:
+  #格式一
+  default:
+    #数值越低优先级越高
+    Priority: 1
+    #权限
+    Permission: "cf.default"
+    #格式
+    #支持 |-
+    Format: "&b[%date%] &f%player%&8>> &f%message%"
+  #格式二
+  admin:
+    #数值越低优先级越高
+    Priority: -1
+    #权限
+    Permission: "cf.admin"
+    #格式
+    #支持 |-
+    Format: |-
+      &b[%date%] &c[管理员] &f%player%&8>> &f%message%
+  vip:
+    #数值越低优先级越高
+    Priority: 0
+    #权限
+    Permission: "custom.vip"
+    #格式
+    #支持 |-
+    Format: |-
+      
+      &b[%date%] &c[管理员] &f%player%&8>> &f%message%
+      
+
+#禁言
+Mute:
+  #没有设置时间所调用的默认值(例: 如指令 /cf mute [player] 后未接时间则使用默认值)
+  #单位: 秒(可选单位: ms, s, h, d, m)
+  DefaultTime: 10s
+  #被禁言玩家尝试发送消息提示
+  #支持 |-
+  Message: |-
+    
+    %prefix%&c被禁言了哦~现在还剩下 &e%time% 秒
+    
+
+#聊天字符个数限制(每次聊天发送的字符最大数)
+CharacterLimit:
+  #开关
+  Enable: false
+  #限制字符
+  Limit: 32
+  #消息提示(删除内容及""则不提示消息)
+  #可单行，如 -> Message: "&c嚷嚷什么呢，说这么大一串"
+  #支持 |-
+  Message: |-
+    %prefix%&c嚷嚷什么呢，说这么一大串
+
+#聊天呼叫（@某某）
+Call:
+  #开关
+  Enable: false
+  #呼叫关键词
+  Key: "@"
+  #被呼叫者游戏声音提示(删除内容及""则不提示游戏声音)
+  Sound: "minecraft:block.note_block.iron_xylophone"
+
+#屏蔽关键词
+BlackTerms:
+  #开关
+  Enable: false
+  #是否惩治所有类型玩家(拥有权限 sb.cf.jump或sb.cf.admin 的玩家及op)
+  ForEveryBody: false
+  #是否阻止玩家发送此条消息
+  Cancel: true
+  #触发指令
+  #触发为插件内置的 ScriptCommand
+  #内置命令:
+  #send -> 全服玩家发送消息
+  #    eg: send 测试消息
+  #for -> 循环执行
+  #    eg: for 3 -> send 循环执行 3 次 send 命令
+  #delay -> 延迟执行
+  #    eg: delay 3 -> 整体延迟 3 秒
+  #console -> 控制台命令
+  #    eg: console kill %player% -> 已控制台身份执行 kill %player% 命令
+  #
+  #若有其他插件注册 ScriptCommand 命令，在本处一样可用
+  Script: |-
+    console kill %player%
+    send %player% 说 &a素质青年从我做起！
+  #触发提示(删除""内信息则不提示)
+  #支持 |-
+  Message: "%prefix%&c素质青年,从我做起"
+  #关键词
+  #支持 * ?
+  #不支持正则
+  Terms:
+    - 傻逼
+    - 草泥马
+    - 你妈死了
+    - sb
+    - nmsl
+
+#词条
+#如若无法编辑修改，请检查是否在 Config.yml 开启了全局配置
+Message:
+  #重载插件
+  Reload: "%prefix%&a插件已重载！"
+  #无权限提示
+  MissingPermission: "%prefix%&c你无法这样做！"
+  #禁言错误提示
+  MuteWrong: "%prefix%&c时间不可为字符串"
+  #禁言成功提示
+  MuteSuccess: "%prefix%&a禁言成功"
+  #找不到玩家
+  NotFoundPlayer: "%prefix%&c找不到玩家"
+  #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
+  #支持 |-
+  Help: |-
+    
+    &a<-=-=-=-=-=-=-=-=-=-= &e&lChatFormat &a=-=-=-=-=-=-=-=-=-=->
+    &b/cf reload &7重载 聊天格式
+    &b/cf mute [player] &7操作 禁言玩家

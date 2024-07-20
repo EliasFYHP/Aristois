@@ -1,0 +1,58 @@
+#插件基本配置
+
+#设置
+Setting:
+  #统计插件使用情况，不进行任何数据操作
+  Bstats: true
+  #数据
+  Data:
+    #存储方式 (MYSQL/SQLite)
+    Type: "SQLite"
+    #SQLite 设置
+    SQLite:
+      #文件位置
+      DataPath: "plugins/ServerBuild/ServerBuild.db"
+    #Mysql 设置
+    Mysql:
+      #地址
+      Host: "jdbc:mysql://localhost"
+      #端口
+      Port: 3306
+      #数据库
+      Database: "xiaoyingbot"
+      #账户
+      UserName: "root"
+      #密码
+      Password: "root"
+
+#全局配置
+OverallSituation:
+  #总开关
+  Enable: false
+  #变量
+  Variable:
+    #开关
+    Enable: false
+    #日期格式(%date%)
+    DateFormat: "yyyy/MM/dd-HH:mm:ss"
+    #前缀(%prefix%)
+    Prefix: "&a[&bServerBuild&a]&e>> "
+  #词条
+  Message:
+    #开关
+    Enable: false
+    #重载
+    Reload: "%prefix%&a重载完成！"
+    #操作完成
+    Complete: "%prefix%&a执行完成!"
+    #无权限提示
+    NoPermission: "%prefix%&c没有权限这么做！"
+    #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
+    Help:
+      - ""
+      - "&a<-=-=-=-=-=-=-=-=-=-= &e&lServerBuild &a=-=-=-=-=-=-=-=-=-=->"
+      - "&b/sb reload &7重载"
+      - "&b/sb stats &7查看插件状况"
+      - "&b/sb open [function] &7启动功能"
+      - "&b/sb off [function] &7关闭功能"
+      - ""
