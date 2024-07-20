@@ -3,6 +3,7 @@ package me.xiaoying.serverbuild;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.file.FileConfig;
+import me.xiaoying.serverbuild.script.SimpleScriptManager;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -57,6 +58,9 @@ public class ServerBuild extends JavaPlugin {
         FileConfig file = new FileConfig();
         SBPlugin.getFileManager().register(file);
         file.load();
+
+        // init ScriptManager
+        SBPlugin.setScriptManager(new SimpleScriptManager());
 
         // bstats
         if (ConfigConstant.SETTING_BSTATS)
