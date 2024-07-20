@@ -125,8 +125,8 @@ public class ChatFormatListener implements Listener {
         if (ChatFormatConstant.CALL_ENABLE) {
             List<Player> atPlayers = this.at(message);
             for (Player atPlayer : atPlayers) {
-                message = message.replace(ChatFormatConstant.CALL_KEY + atPlayer.getName(), "&b" + ChatFormatConstant.CALL_KEY + atPlayer.getName());
-                atPlayer.playSound(player.getLocation(), ChatFormatConstant.CALL_SOUND, 1F, 0F);
+                message = new VariableFactory(message.replace(ChatFormatConstant.CALL_KEY + atPlayer.getName(), "&b" + ChatFormatConstant.CALL_KEY + atPlayer.getName() + "&f")).color().toString();
+                atPlayer.playSound(atPlayer.getLocation(), ChatFormatConstant.CALL_SOUND, 1F, 0F);
             }
         }
 
@@ -140,7 +140,7 @@ public class ChatFormatListener implements Listener {
     }
 
     private List<Player> at(String message) {
-        if (message.contains("@"))
+        if (!message.contains(ChatFormatConstant.CALL_KEY))
             return new ArrayList<>();
 
         Player player = null;
@@ -149,12 +149,12 @@ public class ChatFormatListener implements Listener {
         StringBuilder stringBuilder = new StringBuilder();
         for (String s : message.split("")) {
             if (s.equalsIgnoreCase(ChatFormatConstant.CALL_KEY)) {
-                if (stringBuilder.length() != 0) {
-                    Player playerExact = Bukkit.getServer().getPlayerExact(stringBuilder.toString());
-                    if (playerExact != null) players.add(playerExact);
+                if (stringBuilder.toString().length() != 0) {
+                    players.add(player);
                     stringBuilder = new StringBuilder();
                 }
                 match = true;
+                continue;
             }
 
             // 是否处于匹配模式
