@@ -46,6 +46,7 @@ public class ServerBuild extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        unInitialize();
         ServerUtil.sendMessage("&b|=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—>");
         ServerUtil.sendMessage("&b|&c插件已卸载，感谢您的使用(乌拉！");
         ServerUtil.sendMessage("&b|=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—>");
@@ -63,5 +64,9 @@ public class ServerBuild extends JavaPlugin {
 
         // SqlFactory
         SBPlugin.setSqlFactory(ServerUtil.getSqlFactory());
+    }
+
+    public static void unInitialize() {
+        SBPlugin.getModuleManager().disableModules();
     }
 }
