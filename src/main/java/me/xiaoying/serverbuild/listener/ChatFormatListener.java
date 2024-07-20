@@ -81,8 +81,10 @@ public class ChatFormatListener implements Listener {
                 }
 
                 player.sendMessage(new VariableFactory(ChatFormatConstant.BLACK_TERMS_MESSAGE)
+                        .prefix(ChatFormatConstant.SETTING_PREFIX)
                         .player(player)
                         .date(ChatFormatConstant.SETTING_DATEFORMAT)
+                        .placeholder(player)
                         .color()
                         .toString());
                 String[] split = ChatFormatConstant.BLACK_TERMS_SCRIPT.split("\n");
