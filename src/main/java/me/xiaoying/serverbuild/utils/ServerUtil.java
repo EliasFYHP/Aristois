@@ -37,12 +37,12 @@ public class ServerUtil {
      */
     public static boolean hasPermission(CommandSender sender, String... permissions) {
         for (String permission : permissions) {
-            if (sender.hasPermission(permission))
+            if (!sender.hasPermission(permission))
                 continue;
 
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static void sendMessage(String message) {
