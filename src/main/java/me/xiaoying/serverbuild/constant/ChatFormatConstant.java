@@ -6,6 +6,8 @@ import java.util.List;
  * Constant ChatFormat
  */
 public class ChatFormatConstant {
+    public static String TABLE_MUTE = "cf_mute";
+
     public static boolean ENABLE;
 
     public static String SETTING_DATEFORMAT, SETTING_PREFIX;
