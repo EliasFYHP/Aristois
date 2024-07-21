@@ -81,7 +81,7 @@ public class ChatFormatMuteCommand extends SCommand {
                         .color()
                         .toString());
 
-        sender.sendMessage(new VariableFactory(ChatFormatConstant.MUTE_MESSAGE)
+        sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_MUTE_SUCCESS)
                         .prefix(ChatFormatConstant.SETTING_PREFIX)
                         .date(ChatFormatConstant.SETTING_DATEFORMAT)
                         .time(lastTime)
