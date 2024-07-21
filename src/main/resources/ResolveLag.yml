@@ -1,0 +1,110 @@
+#服务器清理
+
+#开关
+Enable: false
+
+#设置(如若无法更改请查看是否在 Config.yml 文件中启用了全局配置)
+Setting:
+  #%date% 变量格式(如若无法编辑修改，请检查是否在 Config.yml 开启了全局配置)
+  DateFormat: "yyyy/MM/dd-HH:mm:ss"
+  #%prefix% 变量内容(如若无法编辑修改，请检查是否在 Config.yml 开启了全局变量配置)
+  Prefix: "&a[&bChatFormat&a]&e>> "
+
+#功能配置
+ResolveLag:
+  #间隔时间(秒)
+  SecondTime: 120
+  #实体设置
+  Entity:
+    #是否清理宠物
+    Pet: false
+    #是否清理命名实体
+    Named: false
+    #是否清理特殊动作的实体(坐在船上或坐在矿车上的实体)
+    SpecialPost: false
+    #达到上限后开始清理实体
+    Total:
+      #是否启用
+      Enable: false
+      #上限实体数量
+      Limit: 1200
+    #特殊物品，不会清理
+    SpecialItem:
+      - Diamond
+      - Gold_ingot
+    #特殊实体，不会清理
+    SpecialEntity:
+      - Ender_dragon
+      - Warden
+      - Wither_skull
+  #区块设置
+  Chunk:
+    #间隔多长时间后未加载区块则在下此清理实体的同时清理区块
+    Interval: 120
+    #达到上限后开始清理
+    Total:
+      #是否开启
+      Enable: false
+      #上限区块数量
+      Limit: 200
+  #不清理世界
+  WhiteWorld:
+    - white_world
+  #倒计时提示时间
+  CountTime:
+    - 60
+    - 30
+    - 15
+    - 5
+
+#ClearMessgae 词条
+ClearMessage:
+  #倒计时提示
+  CountDown: "&6谁零食掉地上了！？ヾ(•ω•`)o &e(%time%秒)"
+  #清理提示
+  #数值指的是清理实体个数，判断方式取决于Type
+  #Type可选(=, <, >, <=, =<, >=, =>)(其他写法均不判断)
+  #当两个条件都是大于，且都满足(如: 80: >, 85: >)则获取的是数值大的词条
+  #如果出区间 31 < x < 35 则获取的是数值大的词条(Message: (35: Message))
+  ClearDown:
+    0:
+      #判断方式(如 x = 0)
+      Type: "="
+      #消息内容
+      Message: "%prefix%&c怎么回事！！！？怎么会一点都没有！！！？？？இ௰இ &e(%amount%个)"
+    30:
+      #判断方式(如 x <= 0)
+      Type: "<="
+      #消息内容
+      Message: "%prefix%&6怎么才这么点？根本不够吃啊！太让人伤心了！ψ(._. )> &e(%amount%个)"
+    31:
+      #判断方式
+      Type: ">"
+      #消息内容
+      Message: "%prefix%&6勉勉强强吧≡[。。]≡ &e(%amount%个)"
+    50:
+      #判断方式
+      Type: "<"
+      #消息内容
+      Message: "%prefix%&6嗯哼，数量还行(ง •_•)ง &e(%amount%个)"
+    100:
+      #判断方式
+      Type: ">="
+      #消息内容
+      Message: "%prefix%&6吼吼吼，有这么多零食！赚大发了！(๑•̀ㅂ•́)و✧ &e(%amount%个)"
+
+#词条
+Message:
+  #前缀
+  Prefix: "&a[&bResolveLag&a]&e>> "
+  #重载插件
+  Reload: "%prefix%&a已重载！"
+  #无权限提示
+  MissingPermission: "%prefix%&c你无法这样做！"
+  #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
+  Help: |-
+    
+    &a<-=-=-=-=-=-=-=-=-=-= &e&lResolveLag &a=-=-=-=-=-=-=-=-=-=->
+    &b/rl reload &7重载
+    &b/rl clear [entity/chunk] &7立即清理[实体/区块]
+    &f
