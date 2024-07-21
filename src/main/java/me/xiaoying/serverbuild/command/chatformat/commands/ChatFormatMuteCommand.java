@@ -9,7 +9,6 @@ import me.xiaoying.serverbuild.factory.VariableFactory;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
 import me.xiaoying.serverbuild.utils.DateUtil;
 import me.xiaoying.serverbuild.utils.ServerUtil;
-import me.xiaoying.sql.SqlFactory;
 import me.xiaoying.sql.sentence.Condition;
 import me.xiaoying.sql.sentence.Delete;
 import me.xiaoying.sql.sentence.Insert;
