@@ -1,23 +1,36 @@
 package me.xiaoying.serverbuild;
 
+import me.xiaoying.serverbuild.command.SCommand;
+import me.xiaoying.serverbuild.command.serverbuild.ServerBuildCommand;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.file.FileConfig;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
 import me.xiaoying.serverbuild.script.SimpleScriptManager;
+import me.xiaoying.serverbuild.utils.PluginUtil;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main
  */
 public class ServerBuild extends JavaPlugin {
+    private static final List<SCommand> commands = new ArrayList<>();
+
     @Override
     public void onEnable() {
         SBPlugin.setInstance(this);
 
         initialize();
+
+        // bstats
+        if (ConfigConstant.SETTING_BSTATS)
+            new Metrics(SBPlugin.getInstance(), 16512);
+
         ServerUtil.sendMessage("&b|=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—=—>");
         ServerUtil.sendMessage("&b|感谢您使用这个插件");
         ServerUtil.sendMessage("&b|任何问题可以添加QQ: &a764932129");
@@ -63,18 +76,24 @@ public class ServerBuild extends JavaPlugin {
         // init ScriptManager
         SBPlugin.setScriptManager(new SimpleScriptManager());
 
-        // bstats
-        if (ConfigConstant.SETTING_BSTATS)
-            new Metrics(SBPlugin.getInstance(), 16512);
-
         // SqlFactory
         SBPlugin.setSqlFactory(ServerUtil.getSqlFactory());
+
+        // Command
+        ServerBuildCommand serverBuildCommand = new ServerBuildCommand();
+        ServerBuild.commands.add(serverBuildCommand);
+        ServerBuild.commands.forEach(command -> command.getValues().forEach(string -> ServerUtil.registerCommand(string, command.getTabExecutor())));
 
         // Module
         SBPlugin.getModuleManager().registerModule(new ChatFormatModule());
     }
 
     public static void unInitialize() {
+        // Command
+        ServerBuild.commands.forEach(command -> command.getValues().forEach(string -> PluginUtil.unregisterCommand(string, SBPlugin.getInstance())));
+
+        // Module
         SBPlugin.getModuleManager().disableModules();
+        SBPlugin.getModuleManager().unregisterModules();
     }
 }
