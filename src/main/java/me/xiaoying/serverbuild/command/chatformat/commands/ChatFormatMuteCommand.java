@@ -53,7 +53,7 @@ public class ChatFormatMuteCommand extends SCommand {
         if (strings.length == 1)
             over = DateUtil.getDate(DateUtil.translate(ChatFormatConstant.MUTE_DEFAULT_TIME, Date.class), ChatFormatConstant.SETTING_DATEFORMAT);
         else
-            player = Bukkit.getServer().getPlayerExact(strings[0]);
+            over = DateUtil.getDate(DateUtil.translate(strings[1], Date.class), ChatFormatConstant.SETTING_DATEFORMAT);
 
         if (player == null) {
             sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_NOT_FOUND_PLAYER)
