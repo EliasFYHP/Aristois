@@ -9,6 +9,75 @@ import java.util.Date;
  */
 public class DateUtil {
     /**
+     * 字符串转换成日期或数字形式
+     *
+     * @param string String
+     * @param clazz 需要转换出来的类型
+     * @return
+     */
+    public static <T> T translate(String string, Class<?> clazz) {
+        String text = string.substring(0, string.length() - 2);
+        String unit = string.substring(string.length() - 2, string.length() - 1);
+        Long time = 0L;
+        switch (unit.toUpperCase()) {
+            case "D": {
+                try {
+                    time = Long.parseLong(text);
+                    time = 60 * 60 * 24 * time;
+                } catch (Exception e) {
+                    return null;
+                }
+                break;
+            }
+            case "S": {
+                try {
+                    time = Long.parseLong(text);
+                } catch (Exception e) {
+                    return null;
+                }
+                break;
+            }
+            case "MS": {
+                try {
+                    time = Long.parseLong(text);
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+            case "Y": {
+                try {
+                    time = Long.parseLong(text);
+                    time = 60 * 60 * 24 * 30 * 12 * time;
+                } catch (Exception e) {
+                    return null;
+                }
+                break;
+            }
+            case "M": {
+                try {
+                    time = Long.parseLong(text);
+                    time = 60 * 60 * 24 * 30 * time;
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        }
+
+        if (Integer.class == clazz || Long.class == clazz)
+            return (T) time;
+
+        if (Date.class == clazz) {
+            Date date = new Date();
+            if (unit.equalsIgnoreCase("MS"))
+                date.setTime(date.getTime() + time);
+            else
+                date.setTime(date.getTime() + time * 1000);
+            return (T) date;
+        }
+        return null;
+    }
+
+    /**
      * 获取格式日期
      *
      * @param format 格式
