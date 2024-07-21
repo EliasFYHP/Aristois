@@ -40,10 +40,10 @@ public class ChatFormatListener implements Listener {
         columns.add("over");
         Select select = new Select(columns, ChatFormatConstant.TABLE_MUTE);
         select.condition(new Condition("uuid", player.getUniqueId().toString(), Condition.Type.EQUAL));
-        Table table = SBPlugin.getSqlFactory().run(select).get(0);
-        if (table.getRecords().size() != 0) {
+        List<Table> run = SBPlugin.getSqlFactory().run(select);
+        if (run.size() != 0 && run.get(0).getRecords().size() != 0) {
             String over = null;
-            for (Record record : table.getRecords()) {
+            for (Record record : run.get(0).getRecords()) {
                 over = (String) record.get("over");
             }
             long lastTime;
