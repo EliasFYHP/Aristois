@@ -16,9 +16,9 @@ public class DateUtil {
      * @return
      */
     public static <T> T translate(String string, Class<?> clazz) {
-        String text = string.substring(0, string.length() - 2);
-        String unit = string.substring(string.length() - 2, string.length() - 1);
-        Long time = 0L;
+        String text = string.substring(0, string.length() - 1);
+        String unit = string.substring(string.length() - 1, string.length());
+        Long time;
         switch (unit.toUpperCase()) {
             case "D": {
                 try {
@@ -40,9 +40,11 @@ public class DateUtil {
             case "MS": {
                 try {
                     time = Long.parseLong(text);
+                    time = time * 1000;
                 } catch (Exception e) {
                     return null;
                 }
+                break;
             }
             case "Y": {
                 try {
@@ -56,11 +58,19 @@ public class DateUtil {
             case "M": {
                 try {
                     time = Long.parseLong(text);
-                    time = 60 * 60 * 24 * 30 * time;
+//                    time = 60 * 60 * 24 * 30 * time;
+                    time = 60 * time;
                 } catch (Exception e) {
                     return null;
                 }
+                break;
             }
+            default:
+                try {
+                    time = Long.parseLong(string);
+                } catch (Exception e) {
+                    return null;
+                }
         }
 
         if (Integer.class == clazz || Long.class == clazz)

@@ -3,6 +3,7 @@ package me.xiaoying.serverbuild.command.chatformat.commands;
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
 import me.xiaoying.serverbuild.constant.ChatFormatConstant;
+import me.xiaoying.serverbuild.constant.ConstantCommon;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
@@ -48,12 +49,24 @@ public class ChatFormatMuteCommand extends SCommand {
         ChatFormatModule.createTables();
 
         Player player = Bukkit.getServer().getPlayerExact(strings[0]);
-        String save = DateUtil.getDate(ChatFormatConstant.SETTING_DATEFORMAT);
-        String over = null;
+        String save = DateUtil.getDate(ConstantCommon.DATE_FORMAT);
+        Date date;
+        String over;
         if (strings.length == 1)
-            over = DateUtil.getDate(DateUtil.translate(ChatFormatConstant.MUTE_DEFAULT_TIME, Date.class), ChatFormatConstant.SETTING_DATEFORMAT);
+            date = DateUtil.translate(ChatFormatConstant.MUTE_DEFAULT_TIME, Date.class);
         else
-            over = DateUtil.getDate(DateUtil.translate(strings[1], Date.class), ChatFormatConstant.SETTING_DATEFORMAT);
+            date = DateUtil.translate(strings[1], Date.class);
+
+        if (date == null) {
+            sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_MUTE_WRONG)
+                            .prefix(ChatFormatConstant.SETTING_PREFIX)
+                            .date(ChatFormatConstant.SETTING_DATEFORMAT)
+                            .color()
+                            .toString());
+            return;
+        }
+
+        over = DateUtil.getDate(DateUtil.getDate(date, ConstantCommon.DATE_FORMAT));
 
         if (player == null) {
             sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_NOT_FOUND_PLAYER)
@@ -73,7 +86,7 @@ public class ChatFormatMuteCommand extends SCommand {
 
 
         // calculate time
-        long lastTime = DateUtil.getDateReduce(over, save, ChatFormatConstant.SETTING_DATEFORMAT);
+        long lastTime = DateUtil.getDateReduce(over, save, ConstantCommon.DATE_FORMAT) / 1000;
         player.sendMessage(new VariableFactory(ChatFormatConstant.MUTE_MESSAGE)
                         .prefix(ChatFormatConstant.SETTING_PREFIX)
                         .date(ChatFormatConstant.SETTING_DATEFORMAT)

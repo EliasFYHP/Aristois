@@ -1,6 +1,7 @@
 package me.xiaoying.serverbuild.listener;
 
 import me.xiaoying.serverbuild.constant.ChatFormatConstant;
+import me.xiaoying.serverbuild.constant.ConstantCommon;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ChatFormatEntity;
 import me.xiaoying.serverbuild.factory.VariableFactory;
@@ -9,7 +10,6 @@ import me.xiaoying.serverbuild.utils.DateUtil;
 import me.xiaoying.serverbuild.utils.PlayerUtil;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import me.xiaoying.serverbuild.utils.StringUtil;
-import me.xiaoying.sql.entity.Record;
 import me.xiaoying.sql.entity.Table;
 import me.xiaoying.sql.sentence.Condition;
 import me.xiaoying.sql.sentence.Delete;
@@ -43,16 +43,13 @@ public class ChatFormatListener implements Listener {
         select.condition(new Condition("uuid", player.getUniqueId().toString(), Condition.Type.EQUAL));
         List<Table> run = SBPlugin.getSqlFactory().run(select);
         if (run.size() != 0 && run.get(0).getRecords().size() != 0) {
-            String over = null;
-            for (Record record : run.get(0).getRecords()) {
-                over = (String) record.get("over");
-            }
+            String over = (String) run.get(0).getRecords().get(0).get("over");
             long lastTime;
-            if ((lastTime = DateUtil.getDateReduce(over, DateUtil.getDate(ChatFormatConstant.SETTING_DATEFORMAT), ChatFormatConstant.SETTING_DATEFORMAT)) > 0) {
+            if ((lastTime = DateUtil.getDateReduce(over, DateUtil.getDate(ConstantCommon.DATE_FORMAT), ConstantCommon.DATE_FORMAT)) > 0) {
                 player.sendMessage(new VariableFactory(ChatFormatConstant.MUTE_MESSAGE)
                         .prefix(ChatFormatConstant.SETTING_PREFIX)
                         .date(ChatFormatConstant.SETTING_DATEFORMAT)
-                        .time(lastTime)
+                        .time(lastTime / 1000)
                         .color()
                         .toString());
                 return;
