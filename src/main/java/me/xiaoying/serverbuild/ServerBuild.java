@@ -6,7 +6,7 @@ import me.xiaoying.serverbuild.file.FileConfig;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
 import me.xiaoying.serverbuild.script.SimpleScriptManager;
 import me.xiaoying.serverbuild.utils.ServerUtil;
-//import org.bstats.bukkit.Metrics;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -64,8 +64,8 @@ public class ServerBuild extends JavaPlugin {
         SBPlugin.setScriptManager(new SimpleScriptManager());
 
         // bstats
-//        if (ConfigConstant.SETTING_BSTATS)
-//            new Metrics(SBPlugin.getInstance(), 16512);
+        if (ConfigConstant.SETTING_BSTATS)
+            new Metrics(SBPlugin.getInstance(), 16512);
 
         // SqlFactory
         SBPlugin.setSqlFactory(ServerUtil.getSqlFactory());
