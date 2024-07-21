@@ -1,6 +1,5 @@
 package me.xiaoying.serverbuild.utils;
 
-import me.xiaoying.serverbuild.ServerBuild;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.sql.MysqlFactory;
