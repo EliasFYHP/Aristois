@@ -46,11 +46,14 @@ public class ChatFormatModule extends Module {
 
         // register listeners
         this.registerListener(new ChatFormatListener());
+
+        // register commands
+        this.registerCommand(new ChatFormatCommand());
     }
 
     @Override
     public void onEnable() {
-        this.registerCommand(new ChatFormatCommand());
+
     }
 
     @Override
