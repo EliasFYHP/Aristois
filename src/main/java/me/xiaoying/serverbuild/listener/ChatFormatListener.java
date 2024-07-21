@@ -5,9 +5,15 @@ import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ChatFormatEntity;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
+import me.xiaoying.serverbuild.utils.DateUtil;
 import me.xiaoying.serverbuild.utils.PlayerUtil;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import me.xiaoying.serverbuild.utils.StringUtil;
+import me.xiaoying.sql.entity.Record;
+import me.xiaoying.sql.entity.Table;
+import me.xiaoying.sql.sentence.Condition;
+import me.xiaoying.sql.sentence.Delete;
+import me.xiaoying.sql.sentence.Select;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,6 +32,35 @@ public class ChatFormatListener implements Listener {
         Player player = event.getPlayer();
         String message = event.getMessage();
         event.setCancelled(true);
+
+        // mute
+        List<String> columns = new ArrayList<>();
+        columns.add("uuid");
+        columns.add("save");
+        columns.add("over");
+        Select select = new Select(columns, ChatFormatConstant.TABLE_MUTE);
+        select.condition(new Condition("uuid", player.getUniqueId().toString(), Condition.Type.EQUAL));
+        Table table = SBPlugin.getSqlFactory().run(select).get(0);
+        if (table.getRecords().size() != 0) {
+            String over = null;
+            for (Record record : table.getRecords()) {
+                over = (String) record.get("over");
+            }
+            long lastTime;
+            if ((lastTime = DateUtil.getDateReduce(over, DateUtil.getDate(ChatFormatConstant.SETTING_DATEFORMAT), ChatFormatConstant.SETTING_DATEFORMAT)) > 0) {
+                player.sendMessage(new VariableFactory(ChatFormatConstant.MUTE_MESSAGE)
+                        .prefix(ChatFormatConstant.SETTING_PREFIX)
+                        .date(ChatFormatConstant.SETTING_DATEFORMAT)
+                        .time(lastTime)
+                        .color()
+                        .toString());
+                return;
+            }
+
+            Delete delete = new Delete(ChatFormatConstant.TABLE_MUTE);
+            delete.condition(new Condition("uuid", player.getUniqueId().toString(), Condition.Type.EQUAL));
+            SBPlugin.getSqlFactory().run(delete);
+        }
 
         // color
         if (event.getMessage().contains("&") && (!player.isOp() && !PlayerUtil.hasPermission(player, "sb.admin", "sb.cf.admin", "sb.cf.color"))) {

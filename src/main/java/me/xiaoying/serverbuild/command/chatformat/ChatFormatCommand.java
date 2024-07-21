@@ -3,6 +3,7 @@ package me.xiaoying.serverbuild.command.chatformat;
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.RegisteredCommand;
 import me.xiaoying.serverbuild.command.SCommand;
+import me.xiaoying.serverbuild.command.chatformat.commands.ChatFormatMuteCommand;
 import me.xiaoying.serverbuild.command.chatformat.commands.ChatFormatReloadCommand;
 import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
@@ -16,6 +17,7 @@ import java.util.List;
 @Command(values = {"cf", "charformat"}, length = {1, 3, 4})
 public class ChatFormatCommand extends SCommand {
     public ChatFormatCommand() {
+        this.registerCommand(new ChatFormatMuteCommand());
         this.registerCommand(new ChatFormatReloadCommand());
     }
 
