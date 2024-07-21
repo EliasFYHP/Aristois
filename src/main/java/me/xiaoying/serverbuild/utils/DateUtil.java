@@ -84,7 +84,18 @@ public class DateUtil {
      * @return String*Date
      */
     public static String getDate(String format) {
-        return new SimpleDateFormat(format).format(new Date());
+        return getDate(new Date(), format);
+    }
+
+    /**
+     * 获取格式日期
+     *
+     * @param date Date
+     * @param format 格式
+     * @return String*Date
+     */
+    public static String getDate(Date date, String format) {
+        return new SimpleDateFormat(format).format(date);
     }
 
     /**
