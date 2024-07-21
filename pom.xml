@@ -42,7 +42,13 @@
                                 <filter>
                                     <artifact>*:*</artifact>
                                     <excludes>
-                                        <exclude>org/**</exclude>
+                                        <exclude>org/checkerframework/**</exclude>
+                                        <exclude>org/joml/**</exclude>
+                                        <exclude>org/spigotmc/**</exclude>
+                                        <exclude>org/serial/**</exclude>
+                                        <exclude>org/yaml/**</exclude>
+                                        <exclude>org/sqlite/**</exclude>
+                                        <exclude>org/bukkit/**</exclude>
                                         <exclude>net/**</exclude>
                                         <exclude>com/**</exclude>
                                         <exclude>google/**</exclude>
