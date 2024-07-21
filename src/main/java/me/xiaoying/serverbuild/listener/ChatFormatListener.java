@@ -34,6 +34,7 @@ public class ChatFormatListener implements Listener {
         event.setCancelled(true);
 
         // mute
+        ChatFormatModule.createTables();
         List<String> columns = new ArrayList<>();
         columns.add("uuid");
         columns.add("save");
