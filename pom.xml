@@ -27,7 +27,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>me.name.util</shadedPattern>
+                            <shadedPattern>me.xiaoying.serverbuild</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -79,13 +79,13 @@
             <artifactId>spigot-api</artifactId>
             <version>1.20.6-R0.1-SNAPSHOT</version>
         </dependency>
-<!--        &lt;!&ndash; bStats&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.bstats</groupId>-->
-<!--            <artifactId>bstats-bukkit</artifactId>-->
-<!--            <version>3.0.2</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <!-- bStats-->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- SqlFactory-->
         <dependency>
             <groupId>me.xiaoying</groupId>
