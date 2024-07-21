@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Command(values = "mute", length = {1, 2})
 public class ChatFormatMuteCommand extends SCommand {
@@ -100,5 +101,23 @@ public class ChatFormatMuteCommand extends SCommand {
                         .time(lastTime)
                         .color()
                         .toString());
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command command, String head, String[] strings) {
+        List<String> list = new ArrayList<>();
+        if (strings.length == 1)
+            ServerUtil.getOnlinePlayers().forEach(player -> list.add(player.getName()));
+        else if (strings.length == 2)
+            list.add("10s");
+
+        List<String> conditionList = new ArrayList<>();
+        for (String s : list) {
+            if (!s.toUpperCase(Locale.ENGLISH).startsWith(strings[strings.length - 1].toUpperCase(Locale.ENGLISH)))
+                continue;
+
+            conditionList.add(s);
+        }
+        return conditionList;
     }
 }
