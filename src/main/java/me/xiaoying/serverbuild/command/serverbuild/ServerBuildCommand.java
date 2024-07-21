@@ -7,6 +7,7 @@ import me.xiaoying.serverbuild.command.serverbuild.commands.ServerBuildReloadCom
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,5 +60,15 @@ public class ServerBuildCommand extends SCommand {
 
         // 未执行则发出帮助信息
         this.getHelpMessage().forEach(sender::sendMessage);
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command command, String head, String[] strings) {
+        List<String> list = super.onTabComplete(sender, command, head, strings);
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            player.playSound(player.getLocation(), "minecraft:block.bamboo.fall", 1F, 0F);
+        }
+        return list;
     }
 }
