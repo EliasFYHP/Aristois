@@ -1,5 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
+import me.xiaoying.serverbuild.command.chatformat.ChatFormatCommand;
 import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.entity.ChatFormatEntity;
 import me.xiaoying.serverbuild.file.FileChatFormat;
@@ -49,7 +50,7 @@ public class ChatFormatModule extends Module {
 
     @Override
     public void onEnable() {
-
+        this.registerCommand(new ChatFormatCommand());
     }
 
     @Override
