@@ -32,6 +32,6 @@ public class ChatFormatConstant {
             MESSAGE_MISSING_PERMISSION,
             MESSAGE_MUTE_WRONG,
             MESSAGE_MUTE_SUCCESS,
-            MESSAGE_NOT_FOUND_PLAYER;
-    public static String MESSAGE_HELP;
+            MESSAGE_NOT_FOUND_PLAYER,
+            MESSAGE_HELP;
 }
