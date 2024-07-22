@@ -21,7 +21,7 @@ ResolveLag:
     #是否清理命名实体
     Named: false
     #是否清理特殊动作的实体(坐在船上或坐在矿车上的实体)
-    SpecialPost: false
+    SpecialPose: false
     #达到上限后开始清理实体
     Total:
       #是否启用
