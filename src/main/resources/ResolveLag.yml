@@ -95,8 +95,6 @@ ClearMessage:
 
 #词条
 Message:
-  #前缀
-  Prefix: "&a[&bResolveLag&a]&e>> "
   #重载插件
   Reload: "%prefix%&a已重载！"
   #无权限提示
