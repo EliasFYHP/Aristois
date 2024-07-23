@@ -4,6 +4,9 @@ import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * File ResolveLag.yml
  */
@@ -28,8 +31,20 @@ public class FileResolveLag extends File {
         ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_ENABLE = this.getConfiguration().getBoolean("ResolveLag.Entity.Total.Enable");
 
         ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_LIMIT = this.getConfiguration().getInt("ResolveLag.Entity.Total.Limit");
-        ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ITEM = this.getConfiguration().getStringList("ResolveLag.Entity.SpecialItem");
-        ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ENTITY = this.getConfiguration().getStringList("ResolveLag.Entity.SpecialEntity");
+        List<String> itemList = new ArrayList<>();
+        for (String s : this.getConfiguration().getStringList("ResolveLag.Entity.SpecialItem")) {
+            if (!s.contains(":"))
+                s = "minecraft:" + s;
+            itemList.add(s);
+        }
+        List<String> entityList = new ArrayList<>();
+        for (String s : this.getConfiguration().getStringList("ResolveLag.Entity.SpecialEntity")) {
+            if (!s.contains(":"))
+                s = "minecraft:" + s;
+            itemList.add(s);
+        }
+        ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ITEM = itemList;
+        ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ENTITY = entityList;
 
         ResolveLagConstant.RESOLVE_LAG_CHUNK_INTERVAL = this.getConfiguration().getInt("ResolveLag.Chunk.Interval");
         ResolveLagConstant.RESOLVE_LAG_CHUNK_TOTAL_ENABLE = this.getConfiguration().getBoolean("ResolveLag.Chunk.Total.Limit");
