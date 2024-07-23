@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Command(values = {"cf", "charformat"}, length = {1, 3, 4})
+@Command(values = {"cf", "chatformat"}, length = {1, 3, 4})
 public class ChatFormatCommand extends SCommand {
     public ChatFormatCommand() {
         this.registerCommand(new ChatFormatMuteCommand());
