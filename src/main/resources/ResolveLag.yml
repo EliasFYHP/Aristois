@@ -37,9 +37,10 @@ ResolveLag:
       - Ender_dragon
       - Warden
       - Wither_skull
+      - Villager
   #区块设置
   Chunk:
-    #间隔多长时间后未加载区块则在下此清理实体的同时清理区块
+    #清理区块间隔时间
     Interval: 120
     #达到上限后开始清理(单一世界上限)
     Total:

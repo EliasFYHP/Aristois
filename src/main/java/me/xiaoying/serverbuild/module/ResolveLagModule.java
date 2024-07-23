@@ -1,9 +1,9 @@
 package me.xiaoying.serverbuild.module;
 
+import me.xiaoying.serverbuild.command.resolvelag.ResolveLagCommand;
 import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 import me.xiaoying.serverbuild.entity.ResolveLagEntity;
 import me.xiaoying.serverbuild.file.FileResolveLag;
-import me.xiaoying.serverbuild.listener.ResolveLagListener;
 import me.xiaoying.serverbuild.scheduler.ResolveLagScheduler;
 import me.xiaoying.serverbuild.utils.YamlUtil;
 import org.bukkit.Bukkit;
@@ -12,7 +12,6 @@ import org.bukkit.Chunk;
 import java.util.*;
 
 public class ResolveLagModule extends Module {
-    private final Map<Chunk, Date> cacheChunk = new HashMap<>();
     private final List<ResolveLagEntity> resolveLagEntities = new ArrayList<>();
 
     @Override
@@ -48,8 +47,8 @@ public class ResolveLagModule extends Module {
                     file.getConfiguration().getString("ClearMessage.ClearDown.." + string + ".Message")));
         });
 
-        // register listeners
-        this.registerListener(new ResolveLagListener());
+        // register commands
+        this.registerCommand(new ResolveLagCommand());
 
         // register scheduler
         this.registerScheduler(new ResolveLagScheduler());
@@ -65,27 +64,10 @@ public class ResolveLagModule extends Module {
 
     @Override
     public void onDisable() {
-        this.removeChunks();
         this.resolveLagEntities.clear();
     }
 
     public List<ResolveLagEntity> getResolveLagEntities() {
         return this.resolveLagEntities;
-    }
-
-    public void addChunk(Chunk chunk) {
-        this.cacheChunk.put(chunk, new Date());
-    }
-
-    public void removeChunk(Chunk chunk) {
-        this.cacheChunk.remove(chunk);
-    }
-
-    public void removeChunks() {
-        this.cacheChunk.clear();
-    }
-
-    public Map<Chunk, Date> getCacheChunk() {
-        return this.cacheChunk;
     }
 }

@@ -12,7 +12,6 @@ import org.bukkit.Chunk;
 import org.bukkit.entity.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -21,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ResolveLagScheduler extends Scheduler {
     private int time = ResolveLagConstant.RESOLVE_LAG_SECOND_TIME;
+    private int chunkTime = 0;
     private final ResolveLagModule resolveLagModule = (ResolveLagModule) SBPlugin.getModuleManager().getModule("ResolveLag");
 
     public ResolveLagScheduler() {
@@ -42,6 +42,12 @@ public class ResolveLagScheduler extends Scheduler {
                         .placeholder(player)
                         .color()
                         .toString()));
+            }
+
+            if (this.chunkTime >= ResolveLagConstant.RESOLVE_LAG_CHUNK_INTERVAL) {
+                this.clearChunk();
+                this.chunkTime = 0;
+                return;
             }
 
             if (this.time > 0) {
@@ -66,7 +72,6 @@ public class ResolveLagScheduler extends Scheduler {
             List<Integer> list = new ArrayList<>();
             for (ResolveLagEntity clearEntityEntity : trueNode)
                 list.add(clearEntityEntity.getId());
-
 
             int time;
             if (hasBigOperator) {
@@ -94,10 +99,11 @@ public class ResolveLagScheduler extends Scheduler {
                     .toString()));
             this.time = ResolveLagConstant.RESOLVE_LAG_SECOND_TIME;
             this.time--;
+            this.chunkTime++;
         };
     }
 
-    private int clearEntity() {
+    public int clearEntity() {
         AtomicInteger count = new AtomicInteger();
         Bukkit.getServer().getWorlds().forEach(world -> {
             // 白名单世界
@@ -177,17 +183,7 @@ public class ResolveLagScheduler extends Scheduler {
             }
 
             for (Chunk loadedChunk : world.getLoadedChunks()) {
-                if (!this.resolveLagModule.getCacheChunk().containsKey(loadedChunk)) {
-                    this.resolveLagModule.addChunk(loadedChunk);
-                    continue;
-                }
-
-                Date date = this.resolveLagModule.getCacheChunk().get(loadedChunk);
-                if ((new Date().getTime() - date.getTime())/ 1000 < ResolveLagConstant.RESOLVE_LAG_CHUNK_INTERVAL)
-                    continue;
-
-                world.unloadChunk(loadedChunk);
-                this.resolveLagModule.removeChunk(loadedChunk);
+                loadedChunk.unload(true);
                 count.addAndGet(1);
             }
         });
@@ -195,7 +191,7 @@ public class ResolveLagScheduler extends Scheduler {
         return count.get();
     }
 
-    private boolean compareInteger(int num, int num2, String operator) {
+    public boolean compareInteger(int num, int num2, String operator) {
         switch (operator) {
             case "=":
                 return num == num2;
