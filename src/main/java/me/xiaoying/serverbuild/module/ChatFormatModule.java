@@ -61,7 +61,7 @@ public class ChatFormatModule extends Module {
 
     @Override
     public void onDisable() {
-
+        this.entityMap.clear();
     }
 
     public ChatFormatEntity getChatFormatEntity(String name) {
