@@ -60,7 +60,7 @@ ResolveLag:
 #ClearMessgae 词条
 ClearMessage:
   #倒计时提示
-  CountDown: "&6谁零食掉地上了！？ヾ(•ω•`)o &e(%time%秒)"
+  CountDown: "%prefix%&6谁零食掉地上了！？ヾ(•ω•`)o &e(%time%秒)"
   #清理提示
   #数值指的是清理实体个数，判断方式取决于Type
   #Type可选(=, <, >, <=, =<, >=, =>)(其他写法均不判断)
