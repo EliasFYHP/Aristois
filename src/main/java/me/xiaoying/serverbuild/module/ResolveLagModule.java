@@ -8,9 +8,6 @@ import me.xiaoying.serverbuild.scheduler.ResolveLagScheduler;
 import me.xiaoying.serverbuild.utils.YamlUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 
 import java.util.*;
 
