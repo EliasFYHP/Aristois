@@ -43,8 +43,8 @@ public class ResolveLagModule extends Module {
                 return;
             }
             this.resolveLagEntities.add(new ResolveLagEntity(integer,
-                    file.getConfiguration().getString("ClearMessage." + string + ".Type"),
-                    file.getConfiguration().getString("ClearMessage." + string + ".Message")));
+                    file.getConfiguration().getString("ClearMessage.ClearDown.." + string + ".Type"),
+                    file.getConfiguration().getString("ClearMessage.ClearDown.." + string + ".Message")));
         });
 
         // register listeners

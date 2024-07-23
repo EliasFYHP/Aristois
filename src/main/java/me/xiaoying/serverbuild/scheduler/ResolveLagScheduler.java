@@ -24,14 +24,30 @@ public class ResolveLagScheduler extends Scheduler {
     private final ResolveLagModule resolveLagModule = (ResolveLagModule) SBPlugin.getModuleManager().getModule("ResolveLag");
 
     public ResolveLagScheduler() {
-        super(Type.SYNC_REPEAT);
+        super(Type.SYNC_REPEAT, 20L);
     }
 
     @Override
     public Runnable getRunnable() {
         return () -> {
-            if (--this.time > 0)
+            for (Integer i : ResolveLagConstant.RESOLVE_LAG_COUNT_TIME) {
+                if (i != this.time)
+                    continue;
+
+                ServerUtil.getOnlinePlayers().forEach(player -> player.sendMessage(new VariableFactory(ResolveLagConstant.CLEAR_MESSAGE_COUNT_DOWN)
+                        .prefix(ResolveLagConstant.SETTING_PREFIX)
+                        .date(ResolveLagConstant.SETTING_DATEFORMAT)
+                        .time(this.time)
+                        .player(player)
+                        .placeholder(player)
+                        .color()
+                        .toString()));
+            }
+
+            if (this.time > 0) {
+                this.time--;
                 return;
+            }
 
             int count = this.clearEntity() + this.clearChunk();
             boolean hasBigOperator = false;
@@ -76,6 +92,8 @@ public class ResolveLagScheduler extends Scheduler {
                     .placeholder(player)
                     .color()
                     .toString()));
+            this.time = ResolveLagConstant.RESOLVE_LAG_SECOND_TIME;
+            this.time--;
         };
     }
 
@@ -178,13 +196,22 @@ public class ResolveLagScheduler extends Scheduler {
     }
 
     private boolean compareInteger(int num, int num2, String operator) {
-        return switch (operator) {
-            case "=" -> num == num2;
-            case ">" -> num > num2;
-            case "<" -> num < num2;
-            case ">=", "=>" -> num >= num2;
-            case "<=", "=<" -> num <= num2;
-            default -> false;
-        };
+        switch (operator) {
+            case "=":
+                return num == num2;
+            case ">":
+                return num > num2;
+            case "<":
+                return num < num2;
+            case ">=":
+                return num >= num2;
+            case "=>":
+                return num >= num2;
+            case "<=":
+                return num <= num2;
+            case "=<":
+                return num <= num2;
+        }
+        return false;
     }
 }

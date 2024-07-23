@@ -1,5 +1,7 @@
 package me.xiaoying.serverbuild.file;
 
+import me.xiaoying.serverbuild.constant.ChatFormatConstant;
+import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 
 /**
@@ -14,10 +16,10 @@ public class FileResolveLag extends File {
     public void onLoad() {
         ResolveLagConstant.ENABLE = this.getConfiguration().getBoolean("Enable");
 
-        ResolveLagConstant.SETTING_DATEFORMAT = this.getConfiguration().getString("Setting.DateFormat");
-        ResolveLagConstant.SETTING_PREFIX = this.getConfiguration().getString("Setting.Prefix");
+        ResolveLagConstant.SETTING_DATEFORMAT = ConfigConstant.OVERALL_SITUATION_ENABLE & ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
+        ResolveLagConstant.SETTING_PREFIX = ConfigConstant.OVERALL_SITUATION_ENABLE & ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
 
-        ResolveLagConstant.RESOLVE_LAG_SECOND_TIME = this.getConfiguration().getInt("ResolveLag.SecondTIme");
+        ResolveLagConstant.RESOLVE_LAG_SECOND_TIME = this.getConfiguration().getInt("ResolveLag.SecondTime");
 
         ResolveLagConstant.RESOLVE_LAG_ENTITY_PET = this.getConfiguration().getBoolean("ResolveLag.Entity.Pet");
         ResolveLagConstant.RESOLVE_LAG_ENTITY_NAMED = this.getConfiguration().getBoolean("ResolveLag.Entity.Named");
