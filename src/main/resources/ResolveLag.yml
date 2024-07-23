@@ -101,6 +101,12 @@ Message:
   MissingPermission: "%prefix%&c你无法这样做！"
   #未找到世界
   UnknownWorld: "%prefix%&c未找到世界"
+  #世界状态
+  WorldState: |-
+    %prefix%&a世界状态
+     &7- &6世界: &e%world%
+     &7 - &6区块: &e%chunks%
+     &7 - &6实体: &e%entities%
   #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
   Help: |-
     

@@ -43,6 +43,7 @@ public class FileResolveLag extends File {
         ResolveLagConstant.MESSAGE_RELOAD = this.getConfiguration().getString("Message.Reload");
         ResolveLagConstant.MESSAGE_MISSING_PERMISSION = this.getConfiguration().getString("Message.MissingPermission");
         ResolveLagConstant.MESSAGE_UNKNOWN_WORLD = this.getConfiguration().getString("Message.UnknownWorld");
+        ResolveLagConstant.MESSAGE_WORLD_STATE = this.getConfiguration().getString("Message.WorldState");
         ResolveLagConstant.MESSAGE_HELP = this.getConfiguration().getString("Message.Help");
     }
 
