@@ -8,7 +8,7 @@ Setting:
   #%date% 变量格式(如若无法编辑修改，请检查是否在 Config.yml 开启了全局配置)
   DateFormat: "yyyy/MM/dd-HH:mm:ss"
   #%prefix% 变量内容(如若无法编辑修改，请检查是否在 Config.yml 开启了全局变量配置)
-  Prefix: "&a[&bChatFormat&a]&e>> "
+  Prefix: "&a[&bResolveLag&a]&e>> "
 
 #功能配置
 ResolveLag:
