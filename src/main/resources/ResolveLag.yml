@@ -26,7 +26,7 @@ ResolveLag:
     Total:
       #是否启用
       Enable: false
-      #上限实体数量
+      #上限实体数量(单一世界上限)
       Limit: 1200
     #特殊物品，不会清理
     SpecialItem:
@@ -41,7 +41,7 @@ ResolveLag:
   Chunk:
     #间隔多长时间后未加载区块则在下此清理实体的同时清理区块
     Interval: 120
-    #达到上限后开始清理
+    #达到上限后开始清理(单一世界上限)
     Total:
       #是否开启
       Enable: false
