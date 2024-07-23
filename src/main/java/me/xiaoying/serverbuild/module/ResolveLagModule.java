@@ -34,7 +34,7 @@ public class ResolveLagModule extends Module {
         FileResolveLag file = new FileResolveLag();
         // register files
         this.registerFile(file);
-        YamlUtil.getNodes(file.getFile().getAbsolutePath(), "").forEach(object -> {
+        YamlUtil.getNodes(file.getFile().getAbsolutePath(), "ClearMessage.ClearDown").forEach(object -> {
             String string = object.toString();
             int integer;
             try {
