@@ -6,7 +6,11 @@ import me.xiaoying.serverbuild.file.FileResolveLag;
 import me.xiaoying.serverbuild.listener.ResolveLagListener;
 import me.xiaoying.serverbuild.scheduler.ResolveLagScheduler;
 import me.xiaoying.serverbuild.utils.YamlUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 import java.util.*;
 
@@ -56,7 +60,10 @@ public class ResolveLagModule extends Module {
 
     @Override
     public void onEnable() {
-
+        Bukkit.getServer().getWorlds().forEach(world -> {
+            for (Chunk loadedChunk : world.getLoadedChunks())
+                loadedChunk.unload(true);
+        });
     }
 
     @Override
