@@ -109,7 +109,7 @@ public class ResolveLagScheduler extends Scheduler {
             }
 
             // 判断是否达到上限值
-            if (!ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_ENABLE || world.getEntities().size() < ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_LIMIT)
+            if (ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_ENABLE && world.getEntities().size() < ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_LIMIT)
                 return;
 
             world.getEntities().forEach(entity -> {
