@@ -31,5 +31,6 @@ public class ResolveLagConstant {
 
     public static String MESSAGE_RELOAD,
             MESSAGE_MISSING_PERMISSION,
+            MESSAGE_UNKNOWN_WORLD,
             MESSAGE_HELP;
 }

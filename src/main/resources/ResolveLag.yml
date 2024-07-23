@@ -99,6 +99,8 @@ Message:
   Reload: "%prefix%&a已重载！"
   #无权限提示
   MissingPermission: "%prefix%&c你无法这样做！"
+  #未找到世界
+  UnknownWorld: "%prefix%&c未找到世界"
   #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
   Help: |-
     
