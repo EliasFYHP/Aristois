@@ -41,7 +41,7 @@ public class RLClearCommand extends SCommand {
         }
 
         ResolveLagScheduler resolveLagScheduler = new ResolveLagScheduler();
-        int count = resolveLagScheduler.clearEntity() + resolveLagScheduler.clearChunk();
+        int count = resolveLagScheduler.clearEntity();
         boolean hasBigOperator = false;
         List<ResolveLagEntity> trueNode = new ArrayList<>();
         ResolveLagModule resolveLagModule = (ResolveLagModule) SBPlugin.getModuleManager().getModule("ResolveLag");

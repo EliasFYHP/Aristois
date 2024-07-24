@@ -55,7 +55,7 @@ public class ResolveLagScheduler extends Scheduler {
                 return;
             }
 
-            int count = this.clearEntity() + this.clearChunk();
+            int count = this.clearEntity();
             boolean hasBigOperator = false;
             List<ResolveLagEntity> trueNode = new ArrayList<>();
             for (ResolveLagEntity clearDown : this.resolveLagModule.getResolveLagEntities()) {
