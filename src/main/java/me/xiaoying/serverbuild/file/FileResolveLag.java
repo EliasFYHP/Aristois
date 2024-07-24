@@ -41,7 +41,7 @@ public class FileResolveLag extends File {
         for (String s : this.getConfiguration().getStringList("ResolveLag.Entity.SpecialEntity")) {
             if (!s.contains(":"))
                 s = "minecraft:" + s;
-            itemList.add(s);
+            entityList.add(s);
         }
         ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ITEM = itemList;
         ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ENTITY = entityList;
