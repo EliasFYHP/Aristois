@@ -47,6 +47,7 @@ public class FileResolveLag extends File {
         ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ENTITY = entityList;
 
         ResolveLagConstant.RESOLVE_LAG_CHUNK_INTERVAL = this.getConfiguration().getInt("ResolveLag.Chunk.Interval");
+        ResolveLagConstant.RESOLVE_LAG_CHUNK_ENABLE = this.getConfiguration().getBoolean("ResolveLag.Chunk.Enable");
         ResolveLagConstant.RESOLVE_LAG_CHUNK_TOTAL_ENABLE = this.getConfiguration().getBoolean("ResolveLag.Chunk.Total.Limit");
         ResolveLagConstant.RESOLVE_LAG_CHUNK_TOTAL_LIMIT = this.getConfiguration().getInt("ResolveLag.Chunk.Total.Limit");
 

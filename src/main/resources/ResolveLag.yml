@@ -40,6 +40,8 @@ ResolveLag:
       - Villager
   #区块设置
   Chunk:
+    #区块卸载开关
+    Enable: false
     #清理区块间隔时间
     Interval: 120
     #达到上限后开始清理(单一世界上限)

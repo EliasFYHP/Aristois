@@ -73,10 +73,13 @@ public class ResolveLagScheduler extends Scheduler {
             for (ResolveLagEntity clearEntityEntity : trueNode)
                 list.add(clearEntityEntity.getId());
 
+            if (list.size() == 0)
+                return;
+
             int time;
-            if (hasBigOperator) {
+            if (hasBigOperator)
                 time = ListUtil.getListMaxNumber(list);
-            } else
+            else
                 time = ListUtil.getListMinNumber(list);
 
             ResolveLagEntity entity = null;
@@ -87,7 +90,9 @@ public class ResolveLagScheduler extends Scheduler {
                 entity = clearEntityEntity;
             }
 
-            assert entity != null;
+            if (entity == null)
+                return;
+
             String message = entity.getMessage();
             ServerUtil.getOnlinePlayers().forEach(player -> player.sendMessage(new VariableFactory(message)
                     .prefix(ResolveLagConstant.SETTING_PREFIX)
@@ -172,6 +177,9 @@ public class ResolveLagScheduler extends Scheduler {
     }
 
     public int clearChunk() {
+        if (!ResolveLagConstant.RESOLVE_LAG_CHUNK_ENABLE)
+            return 0;
+
         AtomicInteger count = new AtomicInteger();
         Bukkit.getServer().getWorlds().forEach(world -> {
             // 白名单世界
@@ -183,7 +191,7 @@ public class ResolveLagScheduler extends Scheduler {
             }
 
             for (Chunk loadedChunk : world.getLoadedChunks()) {
-                loadedChunk.unload(true);
+                world.unloadChunkRequest(loadedChunk.getX(), loadedChunk.getZ());
                 count.addAndGet(1);
             }
         });
