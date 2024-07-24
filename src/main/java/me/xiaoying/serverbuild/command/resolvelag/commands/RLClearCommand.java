@@ -41,7 +41,9 @@ public class RLClearCommand extends SCommand {
         }
 
         ResolveLagScheduler resolveLagScheduler = new ResolveLagScheduler();
-        int count = resolveLagScheduler.clearEntity();
+        int entitiesCount = resolveLagScheduler.clearEntity();
+        int chunksCount = resolveLagScheduler.clearChunk();
+        int count = entitiesCount + chunksCount;
         boolean hasBigOperator = false;
         List<ResolveLagEntity> trueNode = new ArrayList<>();
         ResolveLagModule resolveLagModule = (ResolveLagModule) SBPlugin.getModuleManager().getModule("ResolveLag");
@@ -79,6 +81,8 @@ public class RLClearCommand extends SCommand {
         ServerUtil.getOnlinePlayers().forEach(player -> player.sendMessage(new VariableFactory(message)
                 .prefix(ResolveLagConstant.SETTING_PREFIX)
                 .date(ResolveLagConstant.SETTING_DATEFORMAT)
+                .entities(entitiesCount)
+                .chunks(chunksCount)
                 .amount(count)
                 .player(player)
                 .placeholder(player)

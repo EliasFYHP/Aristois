@@ -74,27 +74,27 @@ ClearMessage:
       #判断方式(如 x = 0)
       Type: "="
       #消息内容
-      Message: "%prefix%&c怎么回事！！！？怎么会一点都没有！！！？？？இ௰இ &e(%amount%个)"
+      Message: "%prefix%&c怎么回事！！！？怎么会一点都没有！！！？？？இ௰இ &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     30:
       #判断方式(如 x <= 0)
       Type: "<="
       #消息内容
-      Message: "%prefix%&6怎么才这么点？根本不够吃啊！太让人伤心了！ψ(._. )> &e(%amount%个)"
+      Message: "%prefix%&6怎么才这么点？根本不够吃啊！太让人伤心了！ψ(._. )> &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     31:
       #判断方式
       Type: ">"
       #消息内容
-      Message: "%prefix%&6勉勉强强吧≡[。。]≡ &e(%amount%个)"
+      Message: "%prefix%&6勉勉强强吧≡[。。]≡ &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     50:
       #判断方式
       Type: "<"
       #消息内容
-      Message: "%prefix%&6嗯哼，数量还行(ง •_•)ง &e(%amount%个)"
+      Message: "%prefix%&6嗯哼，数量还行(ง •_•)ง &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     100:
       #判断方式
       Type: ">="
       #消息内容
-      Message: "%prefix%&6吼吼吼，有这么多零食！赚大发了！(๑•̀ㅂ•́)و✧ &e(%amount%个)"
+      Message: "%prefix%&6吼吼吼，有这么多零食！赚大发了！(๑•̀ㅂ•́)و✧ &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
 
 #词条
 Message:
