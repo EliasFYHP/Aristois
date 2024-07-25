@@ -16,7 +16,7 @@ import java.util.*;
  * Module ChatFormat
  */
 public class ChatFormatModule extends Module {
-    private final FileChatFormat file = new FileChatFormat();
+    private FileChatFormat file;
     private final Map<String, ChatFormatEntity> entityMap = new HashMap<>();
 
     @Override
@@ -36,6 +36,7 @@ public class ChatFormatModule extends Module {
 
     @Override
     public void init() {
+        this.file = new FileChatFormat();
         // register files
         this.registerFile(this.file);
 

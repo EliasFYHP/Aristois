@@ -38,10 +38,8 @@ public class ChatFormatReloadCommand extends SCommand {
         }
 
         ChatFormatModule chatFormatModule = (ChatFormatModule) SBPlugin.getModuleManager().getModule("ChatFormat");
-        chatFormatModule.onDisable();
-        chatFormatModule.disable();
 
-        chatFormatModule.enable();
+        chatFormatModule.reload();
 
         sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_RELOAD)
                         .prefix(ChatFormatConstant.SETTING_PREFIX)

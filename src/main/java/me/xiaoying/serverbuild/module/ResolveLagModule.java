@@ -12,6 +12,7 @@ import org.bukkit.Chunk;
 import java.util.*;
 
 public class ResolveLagModule extends Module {
+    private FileResolveLag file;
     private final List<ResolveLagEntity> resolveLagEntities = new ArrayList<>();
 
     @Override
@@ -31,21 +32,9 @@ public class ResolveLagModule extends Module {
 
     @Override
     public void init() {
-        FileResolveLag file = new FileResolveLag();
+        this.file = new FileResolveLag();
         // register files
-        this.registerFile(file);
-        YamlUtil.getNodes(file.getFile().getAbsolutePath(), "ClearMessage.ClearDown").forEach(object -> {
-            String string = object.toString();
-            int integer;
-            try {
-                integer = Integer.parseInt(string);
-            } catch (Exception e) {
-                return;
-            }
-            this.resolveLagEntities.add(new ResolveLagEntity(integer,
-                    file.getConfiguration().getString("ClearMessage.ClearDown." + string + ".Type"),
-                    file.getConfiguration().getString("ClearMessage.ClearDown." + string + ".Message")));
-        });
+        this.registerFile(this.file);
 
         // register commands
         this.registerCommand(new ResolveLagCommand());
@@ -56,9 +45,17 @@ public class ResolveLagModule extends Module {
 
     @Override
     public void onEnable() {
-        Bukkit.getServer().getWorlds().forEach(world -> {
-            for (Chunk loadedChunk : world.getLoadedChunks())
-                loadedChunk.unload(true);
+        YamlUtil.getNodes(this.file.getFile().getAbsolutePath(), "ClearMessage.ClearDown").forEach(object -> {
+            String string = object.toString();
+            int integer;
+            try {
+                integer = Integer.parseInt(string);
+            } catch (Exception e) {
+                return;
+            }
+            this.resolveLagEntities.add(new ResolveLagEntity(integer,
+                    this.file.getConfiguration().getString("ClearMessage.ClearDown." + string + ".Type"),
+                    this.file.getConfiguration().getString("ClearMessage.ClearDown." + string + ".Message")));
         });
     }
 

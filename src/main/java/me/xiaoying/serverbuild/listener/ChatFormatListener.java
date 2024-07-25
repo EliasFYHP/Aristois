@@ -14,7 +14,11 @@ import me.xiaoying.sql.entity.Table;
 import me.xiaoying.sql.sentence.Condition;
 import me.xiaoying.sql.sentence.Delete;
 import me.xiaoying.sql.sentence.Select;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Content;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -170,10 +174,43 @@ public class ChatFormatListener implements Listener {
         if (!send)
             return;
 
-        for (Player onlinePlayer : ServerUtil.getOnlinePlayers())
-            onlinePlayer.sendMessage(message);
+        TextComponent textComponent = null;
+        item: if (message.contains("[item]")) {
+            textComponent = new TextComponent();
+            if (player.getItemInUse() == null || player.getItemInUse().getType() == Material.AIR)
+                break item;
 
-        ServerUtil.sendMessage(message);
+            String[] split = message.split("\\[itme]");
+            for (int i = 0; i < split.length; i++) {
+                textComponent.addExtra(split[i]);
+
+                if (i == split.length - 1)
+                    break;
+
+                TextComponent textComponent1 = new TextComponent(player.getItemInUse().getItemMeta().getDisplayName());
+                textComponent1.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM));
+                textComponent.addExtra(textComponent1);
+            }
+
+            if (message.endsWith("[item]")) {
+                TextComponent textComponent1 = new TextComponent(player.getItemInUse().getItemMeta().getDisplayName());
+                textComponent1.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM));
+                textComponent.addExtra(textComponent1);
+            }
+        }
+
+        if (textComponent == null) {
+            for (Player onlinePlayer : ServerUtil.getOnlinePlayers())
+                onlinePlayer.sendMessage(message);
+
+            ServerUtil.sendMessage(message);
+            return;
+        }
+
+        for (Player onlinePlayer : ServerUtil.getOnlinePlayers())
+            onlinePlayer.spigot().sendMessage(textComponent);
+
+        ServerUtil.sendMessage(textComponent.getText());
     }
 
     private List<Player> at(String message) {

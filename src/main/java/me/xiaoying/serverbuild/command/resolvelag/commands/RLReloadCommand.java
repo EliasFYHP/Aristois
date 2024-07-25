@@ -37,10 +37,8 @@ public class RLReloadCommand extends SCommand {
         }
 
         ResolveLagModule resolveLagModule = (ResolveLagModule) SBPlugin.getModuleManager().getModule("ResolveLag");
-        resolveLagModule.onDisable();
-        resolveLagModule.disable();
 
-        resolveLagModule.enable();
+        resolveLagModule.reload();
 
         sender.sendMessage(new VariableFactory(ResolveLagConstant.MESSAGE_RELOAD)
                 .prefix(ResolveLagConstant.SETTING_PREFIX)
