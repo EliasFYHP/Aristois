@@ -16,7 +16,7 @@ public class PlayerSelectInterpreter implements Interpreter {
         List<String> list = new ArrayList<>();
 
         if (string.contains(" * ")) {
-            String[] split = string.split("\\*");
+            String[] split = string.split(" \\* ");
             for (Player onlinePlayer : ServerUtil.getOnlinePlayers()) {
                 StringBuilder stringBuilder = new StringBuilder();
                 for (int i = 0; i < split.length; i++) {
