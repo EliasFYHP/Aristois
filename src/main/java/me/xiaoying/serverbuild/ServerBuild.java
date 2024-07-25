@@ -42,6 +42,7 @@ public class ServerBuild extends JavaPlugin {
 
             if (!module.ready()) {
                 ServerUtil.sendMessage("&b|&r    &a" + module.getName() + "(" + module.getAliasName() + "): " + "&c已关闭");
+                module.disable();
                 return;
             }
             ServerUtil.sendMessage("&b|&r    &a" + module.getName() + "(" + module.getAliasName() + "): " + "&e已开启");
