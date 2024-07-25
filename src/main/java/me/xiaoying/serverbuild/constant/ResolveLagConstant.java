@@ -22,7 +22,8 @@ public class ResolveLagConstant {
 
     public static int RESOLVE_LAG_CHUNK_INTERVAL,
             RESOLVE_LAG_CHUNK_TOTAL_LIMIT;
-    public static boolean RESOLVE_LAG_CHUNK_TOTAL_ENABLE;
+    public static boolean RESOLVE_LAG_CHUNK_ENABLE,
+            RESOLVE_LAG_CHUNK_TOTAL_ENABLE;
 
     public static List<String> RESOLVE_LAG_WHITE_WORLD;
     public static List<Integer> RESOLVE_LAG_COUNT_TIME;
@@ -31,5 +32,7 @@ public class ResolveLagConstant {
 
     public static String MESSAGE_RELOAD,
             MESSAGE_MISSING_PERMISSION,
+            MESSAGE_UNKNOWN_WORLD,
+            MESSAGE_WORLD_STATE,
             MESSAGE_HELP;
 }

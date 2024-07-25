@@ -37,9 +37,12 @@ ResolveLag:
       - Ender_dragon
       - Warden
       - Wither_skull
+      - Villager
   #区块设置
   Chunk:
-    #间隔多长时间后未加载区块则在下此清理实体的同时清理区块
+    #区块卸载开关
+    Enable: false
+    #清理区块间隔时间
     Interval: 120
     #达到上限后开始清理(单一世界上限)
     Total:
@@ -71,27 +74,27 @@ ClearMessage:
       #判断方式(如 x = 0)
       Type: "="
       #消息内容
-      Message: "%prefix%&c怎么回事！！！？怎么会一点都没有！！！？？？இ௰இ &e(%amount%个)"
+      Message: "%prefix%&c怎么回事！！！？怎么会一点都没有！！！？？？இ௰இ &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     30:
       #判断方式(如 x <= 0)
       Type: "<="
       #消息内容
-      Message: "%prefix%&6怎么才这么点？根本不够吃啊！太让人伤心了！ψ(._. )> &e(%amount%个)"
+      Message: "%prefix%&6怎么才这么点？根本不够吃啊！太让人伤心了！ψ(._. )> &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     31:
       #判断方式
       Type: ">"
       #消息内容
-      Message: "%prefix%&6勉勉强强吧≡[。。]≡ &e(%amount%个)"
+      Message: "%prefix%&6勉勉强强吧≡[。。]≡ &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     50:
       #判断方式
       Type: "<"
       #消息内容
-      Message: "%prefix%&6嗯哼，数量还行(ง •_•)ง &e(%amount%个)"
+      Message: "%prefix%&6嗯哼，数量还行(ง •_•)ง &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
     100:
       #判断方式
       Type: ">="
       #消息内容
-      Message: "%prefix%&6吼吼吼，有这么多零食！赚大发了！(๑•̀ㅂ•́)و✧ &e(%amount%个)"
+      Message: "%prefix%&6吼吼吼，有这么多零食！赚大发了！(๑•̀ㅂ•́)و✧ &e(总计: %amount%, 实体: %entities%, 区块: %chunks%)"
 
 #词条
 Message:
@@ -99,6 +102,14 @@ Message:
   Reload: "%prefix%&a已重载！"
   #无权限提示
   MissingPermission: "%prefix%&c你无法这样做！"
+  #未找到世界
+  UnknownWorld: "%prefix%&c未找到世界"
+  #世界状态
+  WorldState: |-
+    %prefix%&a世界状态
+     &7- &6世界: &e%world%
+     &7 - &6区块: &e%chunks%
+     &7 - &6实体: &e%entities%
   #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
   Help: |-
     
