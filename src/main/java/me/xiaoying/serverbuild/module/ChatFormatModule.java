@@ -16,6 +16,7 @@ import java.util.*;
  * Module ChatFormat
  */
 public class ChatFormatModule extends Module {
+    private final FileChatFormat file = new FileChatFormat();
     private final Map<String, ChatFormatEntity> entityMap = new HashMap<>();
 
     @Override
@@ -36,16 +37,7 @@ public class ChatFormatModule extends Module {
     @Override
     public void init() {
         // register files
-        FileChatFormat file = new FileChatFormat();
-        this.registerFile(file);
-        YamlUtil.getNodes(file.getFile().getPath(), "Formats").forEach(object -> {
-            String string = object.toString();
-            ChatFormatEntity entity = new ChatFormatEntity(string,
-                    file.getConfiguration().getInt("Formats." + string + ".Priority"),
-                    file.getConfiguration().getString("Formats." + string + ".Permission"),
-                    file.getConfiguration().getString("Formats." + string + ".Format"));
-            this.entityMap.put(string.toUpperCase(Locale.ENGLISH), entity);
-        });
+        this.registerFile(this.file);
 
         // register listeners
         this.registerListener(new ChatFormatListener());
@@ -56,7 +48,14 @@ public class ChatFormatModule extends Module {
 
     @Override
     public void onEnable() {
-
+        YamlUtil.getNodes(this.file.getFile().getPath(), "Formats").forEach(object -> {
+            String string = object.toString();
+            ChatFormatEntity entity = new ChatFormatEntity(string,
+                    this.file.getConfiguration().getInt("Formats." + string + ".Priority"),
+                    this.file.getConfiguration().getString("Formats." + string + ".Permission"),
+                    this.file.getConfiguration().getString("Formats." + string + ".Format"));
+            this.entityMap.put(string.toUpperCase(Locale.ENGLISH), entity);
+        });
     }
 
     @Override
