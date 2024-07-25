@@ -114,7 +114,7 @@ public class ChatFormatListener implements Listener {
 
                 if (player.isOp() || PlayerUtil.hasPermission(player, "sb.admin", "sb.cf.admin", "sb.cf.jump")) {
                     send = true;
-                    return;
+                    break;
                 }
 
                 player.sendMessage(new VariableFactory(ChatFormatConstant.BLACK_TERMS_MESSAGE)
