@@ -1,5 +1,7 @@
 package me.xiaoying.serverbuild.script.interpreter;
 
+import me.xiaoying.serverbuild.script.interpreter.interpreters.PlayerSelectInterpreter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,6 +9,10 @@ import java.util.List;
 
 public class SimpleInterpreterManager implements InterpreterManager {
     private List<Interpreter> interpreters = new ArrayList<>();
+
+    public SimpleInterpreterManager() {
+        this.registerInterpreter(new PlayerSelectInterpreter());
+    }
 
     @Override
     public void registerInterpreter(Interpreter interpreter) {
@@ -28,22 +34,27 @@ public class SimpleInterpreterManager implements InterpreterManager {
 
     @Override
     public String[] interpreter(String string) {
+        List<String> list = new ArrayList<>();
         for (Interpreter interpreter : this.interpreters) {
             String[] strings;
             if ((strings = interpreter.interpret(string)) == null || strings.length == 0)
-                return new String[0];
+                continue;
 
             if (strings.length != 1 || strings[0].equalsIgnoreCase(string)) {
-                List<String> list = new ArrayList<>(Arrays.asList(strings).subList(0, strings.length - 1));
+                List<String> list1 = new ArrayList<>(Arrays.asList(strings).subList(0, strings.length - 1));
                 for (String s : strings)
-                    Collections.addAll(list, this.interpreter(s));
+                    Collections.addAll(list1, this.interpreter(s));
 
-                strings = list.toArray(new String[0]);
+                strings = list1.toArray(new String[0]);
             }
 
-            return strings;
+            list.addAll(Arrays.asList(strings));
         }
 
-        return new String[] {string};
+        if (list.size() == 0)
+            list.add(string);
+        System.out.println(list);
+
+        return list.toArray(new String[0]);
     }
 }
