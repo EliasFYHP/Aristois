@@ -69,17 +69,40 @@ public class SimpleScriptManager implements ScriptManager {
 
         String[] split = command.split(" ");
         String head = split[0].toUpperCase();
-        String[] functions = new ArrayList<>(Arrays.asList(split).subList(1, split.length)).toArray(new String[0]);
 
         if (this.knownScript.get(head) == null) {
+            // interpreter
+            String[] strings = this.getInterpreterManager().interpreter(command);
+            if (strings != null) {
+                for (String string : strings)
+                    this.callScript(string, player);
+            }
+
             ServerUtil.sendMessage(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX + "&c未知命令 &e" + head + " &c，请检查命令名称");
             return;
         }
 
-        // 解释器暂时没做
+        Script script = this.knownScript.get(head);
+        String[] functions = new ArrayList<>(Arrays.asList(split).subList(1, split.length)).toArray(new String[0]);
 
-        Script script = knownScript.get(head);
-        script.performCommand(player, functions);
+        // process first
+        if (script.processFirst()) {
+            script.performCommand(player, functions);
+            return;
+        }
+
+        // interpreter
+        String[] strings = this.getInterpreterManager().interpreter(command);
+        if (strings == null || strings.length == 0)
+            return;
+
+        if (strings.length == 1 && strings[0].equalsIgnoreCase(command)) {
+            script.performCommand(player, functions);
+            return;
+        }
+
+        for (String string : strings)
+            this.callScript(string, player);
     }
 
     @Override
