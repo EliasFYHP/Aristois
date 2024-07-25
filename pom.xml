@@ -55,6 +55,10 @@
                                         <exclude>javax/**</exclude>
                                         <exclude>mojang-translations/**</exclude>
                                         <exclude>sqlite-jdbc.properties</exclude>
+                                        <exclude>INFO-BIN</exclude>
+                                        <exclude>INFO-SRC</exclude>
+                                        <exclude>LICENSE</exclude>
+                                        <exclude>README</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
