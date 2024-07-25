@@ -15,8 +15,8 @@ public class FileChatFormat extends File {
     public void onLoad() {
         ChatFormatConstant.ENABLE = this.getConfiguration().getBoolean("Enable");
 
-        ChatFormatConstant.SETTING_DATEFORMAT = ConfigConstant.OVERALL_SITUATION_ENABLE & ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
-        ChatFormatConstant.SETTING_PREFIX = ConfigConstant.OVERALL_SITUATION_ENABLE & ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
+        ChatFormatConstant.SETTING_DATEFORMAT = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
+        ChatFormatConstant.SETTING_PREFIX = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
 
         ChatFormatConstant.MUTE_DEFAULT_TIME = this.getConfiguration().getString("Mute.DefaultTime");
         ChatFormatConstant.MUTE_MESSAGE = this.getConfiguration().getString("Mute.Message");
