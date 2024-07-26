@@ -8,6 +8,7 @@ import me.xiaoying.serverbuild.script.interpreter.SimpleInterpreterManager;
 import me.xiaoying.serverbuild.script.scripts.ConsoleScript;
 import me.xiaoying.serverbuild.script.scripts.LogScript;
 import me.xiaoying.serverbuild.script.scripts.SendScript;
+import me.xiaoying.serverbuild.script.scripts.TitleScript;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -21,6 +22,7 @@ public class SimpleScriptManager implements ScriptManager {
     public SimpleScriptManager() {
         this.registerScript(new LogScript());
         this.registerScript(new SendScript());
+        this.registerScript(new TitleScript());
         this.registerScript(new ConsoleScript());
     }
 
