@@ -115,5 +115,6 @@ Message:
     
     &a<-=-=-=-=-=-=-=-=-=-= &e&lResolveLag &a=-=-=-=-=-=-=-=-=-=->
     &b/rl reload &7重载
-    &b/rl clear [entity/chunk] &7立即清理[实体/区块]
+    &b/rl clear &7立即清理
+    &b/rl state [world] &7查看世界状态
     &f
