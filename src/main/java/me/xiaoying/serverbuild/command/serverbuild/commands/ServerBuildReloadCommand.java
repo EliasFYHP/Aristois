@@ -41,8 +41,10 @@ public class ServerBuildReloadCommand extends SCommand {
         SBPlugin.getModuleManager().getModules().forEach(module -> {
             module.init();
 
-            if (!module.ready())
+            if (!module.ready()) {
+                module.disable();
                 return;
+            }
 
             module.enable();
         });
