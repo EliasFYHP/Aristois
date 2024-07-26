@@ -42,9 +42,6 @@ public class SimpleInterpreterManager implements InterpreterManager {
 
             if (strings.length != 1 || strings[0].equalsIgnoreCase(string)) {
                 List<String> list1 = new ArrayList<>(Arrays.asList(strings).subList(0, strings.length - 1));
-                for (String s : strings)
-                    Collections.addAll(list1, this.interpreter(s));
-
                 strings = list1.toArray(new String[0]);
             }
 
