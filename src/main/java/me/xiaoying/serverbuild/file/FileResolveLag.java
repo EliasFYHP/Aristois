@@ -1,6 +1,5 @@
 package me.xiaoying.serverbuild.file;
 
-import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 
@@ -56,11 +55,12 @@ public class FileResolveLag extends File {
 
         ResolveLagConstant.CLEAR_MESSAGE_COUNT_DOWN = this.getConfiguration().getString("ClearMessage.CountDown");
 
-        ResolveLagConstant.MESSAGE_RELOAD = this.getConfiguration().getString("Message.Reload");
-        ResolveLagConstant.MESSAGE_MISSING_PERMISSION = this.getConfiguration().getString("Message.MissingPermission");
+        ResolveLagConstant.MESSAGE_RELOAD = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
+        ResolveLagConstant.MESSAGE_MISSING_PERMISSION = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
+        ResolveLagConstant.MESSAGE_HELP = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
+
         ResolveLagConstant.MESSAGE_UNKNOWN_WORLD = this.getConfiguration().getString("Message.UnknownWorld");
         ResolveLagConstant.MESSAGE_WORLD_STATE = this.getConfiguration().getString("Message.WorldState");
-        ResolveLagConstant.MESSAGE_HELP = this.getConfiguration().getString("Message.Help");
     }
 
     @Override

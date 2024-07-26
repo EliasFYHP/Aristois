@@ -36,12 +36,12 @@ public class FileChatFormat extends File {
         ChatFormatConstant.BLACK_TERMS_MESSAGE = this.getConfiguration().getString("BlackTerms.Message");
         ChatFormatConstant.BLACK_TERMS_TERMS = this.getConfiguration().getStringList("BlackTerms.Terms");
 
-        ChatFormatConstant.MESSAGE_RELOAD = this.getConfiguration().getString("Message.Reload");
-        ChatFormatConstant.MESSAGE_MISSING_PERMISSION = this.getConfiguration().getString("Message.MissingPermission");
+        ChatFormatConstant.MESSAGE_RELOAD = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
+        ChatFormatConstant.MESSAGE_MISSING_PERMISSION = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
+        ChatFormatConstant.MESSAGE_HELP = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
         ChatFormatConstant.MESSAGE_MUTE_WRONG = this.getConfiguration().getString("Message.MuteWrong");
         ChatFormatConstant.MESSAGE_MUTE_SUCCESS = this.getConfiguration().getString("Message.MuteSuccess");
         ChatFormatConstant.MESSAGE_NOT_FOUND_PLAYER = this.getConfiguration().getString("Message.NotFoundPlayer");
-        ChatFormatConstant.MESSAGE_HELP = this.getConfiguration().getString("Message.Help");
     }
 
     @Override
