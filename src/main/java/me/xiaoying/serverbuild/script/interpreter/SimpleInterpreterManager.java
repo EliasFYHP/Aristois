@@ -53,7 +53,6 @@ public class SimpleInterpreterManager implements InterpreterManager {
 
         if (list.size() == 0)
             list.add(string);
-        System.out.println(list);
 
         return list.toArray(new String[0]);
     }
