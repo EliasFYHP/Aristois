@@ -1,0 +1,58 @@
+#WelcomeMessage
+#玩家 进入/退出 服务器消息
+
+#开关
+Enable: false
+
+#设置
+Setting:
+  #%date% 变量格式(如若无法编辑修改，请检查是否在 Config.yml 开启了全局配置)
+  DateFormat: "yyyy/MM/dd-HH:mm:ss"
+  #%prefix% 变量内容(如若无法编辑修改，请检查是否在 Config.yml 开启了全局变量配置)
+  Prefix: "&a[&bWelcomeMessage&a]&e>> "
+
+#消息设置
+WelcomeMessage:
+  #默认配置
+  default:
+    #优先级(数值低优先)
+    Priority: 1
+    #权限
+    Permission: "wm.default"
+    #进入服务器效果
+    Join: |-
+      send * &7[&a+&7]&b%player% - &7[%date%]
+      log &7[&a+&7]&b%player% - &7[%date%]
+    #退出服务器效果
+    Quit: |-
+      send * &7[&c-&7]&b%player% - &7[%date%]
+      log &7[&c-&7]&b%player% - &7[%date%]
+  #管理权限
+  admin:
+    #优先级(数值低优先)
+    Priority: 0
+    #权限
+    Permission: "wm.admin"
+    #进入服务器效果
+    Join: |-
+      send * &7[&a+&7]&b%player% - &7[%date%]
+      title * &b%player%:&a进入服务器
+      log &7[&a+&7]&b%player% - &7[%date%]
+    #退出服务器效果
+    Quit: |-
+      send * &7[&c-&7]&b%player% - &7[%date%]
+      title * &b%player%:&c退出服务器
+      log &7[&c-&7]&b%player% - &7[%date%]
+
+#词条
+Message:
+  #重载
+  Reload: "%prefix%&a重载完成!"
+  #无权限
+  MissingPermission: "%prefix%&c没有权限这么做!"
+  #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
+  Help: |-
+    
+    &a<-=-=-=-=-=-=-=-=-=-= &e&lWelcomeMessage &a=-=-=-=-=-=-=-=-=-=->
+    &b/wm reload &7重载
+    &r
