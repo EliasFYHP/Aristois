@@ -6,6 +6,7 @@ import me.xiaoying.serverbuild.factory.VariableFactory;
 import me.xiaoying.serverbuild.script.interpreter.InterpreterManager;
 import me.xiaoying.serverbuild.script.interpreter.SimpleInterpreterManager;
 import me.xiaoying.serverbuild.script.scripts.ConsoleScript;
+import me.xiaoying.serverbuild.script.scripts.LogScript;
 import me.xiaoying.serverbuild.script.scripts.SendScript;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.Bukkit;
@@ -18,6 +19,7 @@ public class SimpleScriptManager implements ScriptManager {
     private final Map<String, Script> knownScript = new HashMap<>();
 
     public SimpleScriptManager() {
+        this.registerScript(new LogScript());
         this.registerScript(new SendScript());
         this.registerScript(new ConsoleScript());
     }
@@ -73,12 +75,16 @@ public class SimpleScriptManager implements ScriptManager {
         if (this.knownScript.get(head) == null) {
             // interpreter
             String[] strings = this.getInterpreterManager().interpreter(command);
-            if (strings != null) {
-                for (String string : strings)
-                    this.callScript(string, player);
+            if (strings == null || strings.length == 0)
+                return;
+
+            if (strings.length == 1 && strings[0].equalsIgnoreCase(command)) {
+                ServerUtil.sendMessage(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX + "&c未知命令 &e" + head + " &c，请检查命令名称");
+                return;
             }
 
-            ServerUtil.sendMessage(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX + "&c未知命令 &e" + head + " &c，请检查命令名称");
+            for (String string : strings)
+                this.callScript(string, player);
             return;
         }
 
