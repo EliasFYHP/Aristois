@@ -2,7 +2,6 @@ package me.xiaoying.serverbuild.command.chatformat.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.command.chatformat.ChatFormatCommand;
 import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Command(values = "reload", length = 0)
-public class ChatFormatReloadCommand extends SCommand {
+public class CFReloadCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();

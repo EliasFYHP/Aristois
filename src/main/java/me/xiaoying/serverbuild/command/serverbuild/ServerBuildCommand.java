@@ -3,7 +3,7 @@ package me.xiaoying.serverbuild.command.serverbuild;
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.RegisteredCommand;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.command.serverbuild.commands.ServerBuildReloadCommand;
+import me.xiaoying.serverbuild.command.serverbuild.commands.SBReloadCommand;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import org.bukkit.command.CommandSender;
@@ -19,7 +19,7 @@ import java.util.List;
 @Command(values = {"sb", "serverbuild"}, length = {1, 2})
 public class ServerBuildCommand extends SCommand {
     public ServerBuildCommand() {
-        this.registerCommand(new ServerBuildReloadCommand());
+        this.registerCommand(new SBReloadCommand());
     }
 
     @Override

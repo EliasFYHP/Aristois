@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Command(values = "mute", length = {1, 2})
-public class ChatFormatMuteCommand extends SCommand {
+public class CFMuteCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
