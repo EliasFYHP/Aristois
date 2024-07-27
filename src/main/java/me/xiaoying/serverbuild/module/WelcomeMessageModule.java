@@ -1,5 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
+import me.xiaoying.serverbuild.command.welcomemessage.WelcomeMessageCommand;
 import me.xiaoying.serverbuild.constant.WelcomeMessageConstant;
 import me.xiaoying.serverbuild.entity.WelcomeMessageEntity;
 import me.xiaoying.serverbuild.file.FileWelcomeMessage;
@@ -36,6 +37,9 @@ public class WelcomeMessageModule extends Module {
 
         // register listeners
         this.registerListener(new WelcomeMessageListener());
+
+        // register commands
+        this.registerCommand(new WelcomeMessageCommand());
     }
 
     @Override
