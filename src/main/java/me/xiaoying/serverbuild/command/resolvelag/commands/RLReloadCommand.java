@@ -27,7 +27,8 @@ public class RLReloadCommand extends SCommand {
     }
 
     @Override
-    public void performCommand(CommandSender sender, String[] strings) {        if (!ServerUtil.hasPermission(sender, "sb.admin", "sb.rl.admin") && !sender.isOp()) {
+    public void performCommand(CommandSender sender, String[] strings) {
+        if (!ServerUtil.hasPermission(sender, "sb.admin", "sb.rl.admin") && !sender.isOp()) {
             sender.sendMessage(new VariableFactory(ResolveLagConstant.MESSAGE_MISSING_PERMISSION)
                     .prefix(ResolveLagConstant.SETTING_PREFIX)
                     .date(ResolveLagConstant.SETTING_DATEFORMAT)
