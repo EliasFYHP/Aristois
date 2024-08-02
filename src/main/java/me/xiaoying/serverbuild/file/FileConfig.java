@@ -29,6 +29,7 @@ public class FileConfig extends File {
         ConfigConstant.OVERALL_SITUATION_MESSAGE_RELOAD = this.getConfiguration().getString("OverallSituation.Message.Reload");
         ConfigConstant.OVERALL_SITUATION_MESSAGE_COMPLETE = this.getConfiguration().getString("OverallSituation.Message.Complete");
         ConfigConstant.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION = this.getConfiguration().getString("OverallSituation.Message.MissingPermission");
+        ConfigConstant.OVERALL_SITUATION_MESSAGE_NEED_PLAYER = this.getConfiguration().getString("OverallSituation.Message.NeedPlayer");
         ConfigConstant.OVERALL_SITUATION_MESSAGE_HELP = this.getConfiguration().getString("OverallSituation.Message.Help");
     }
 

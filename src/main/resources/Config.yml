@@ -47,6 +47,8 @@ OverallSituation:
     Complete: "%prefix%&a执行完成!"
     #无权限提示
     MissingPermission: "%prefix%&c没有权限这么做！"
+    #需要以玩家身份执行
+    NeedPlayer: "&c请以玩家身份执行"
     #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
     Help: |-
       
