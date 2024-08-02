@@ -55,6 +55,7 @@ OverallSituation:
       &a<-=-=-=-=-=-=-=-=-=-= &e&lServerBuild &a=-=-=-=-=-=-=-=-=-=->
       &b/sb reload &7重载
       &b/sb stats &7查看插件状况
+      &b/sb script [script] &7执行脚本命令
       &b/sb open [function] &7启动功能
       &b/sb off [function] &7关闭功能
       &f
