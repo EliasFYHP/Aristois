@@ -4,6 +4,7 @@ import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.RegisteredCommand;
 import me.xiaoying.serverbuild.command.SCommand;
 import me.xiaoying.serverbuild.command.serverbuild.commands.SBReloadCommand;
+import me.xiaoying.serverbuild.command.serverbuild.commands.SBScriptCommand;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import org.bukkit.command.CommandSender;
@@ -20,6 +21,7 @@ import java.util.List;
 public class ServerBuildCommand extends SCommand {
     public ServerBuildCommand() {
         this.registerCommand(new SBReloadCommand());
+        this.registerCommand(new SBScriptCommand());
     }
 
     @Override
@@ -48,7 +50,7 @@ public class ServerBuildCommand extends SCommand {
 
         boolean isDo = false;
         for (RegisteredCommand registeredCommand : this.getRegisteredCommands().get(head)) {
-            if (registeredCommand.getLength() != strings.length)
+            if (registeredCommand.getLength() != strings.length && registeredCommand.getLength() != -1)
                 continue;
 
             registeredCommand.getSubCommand().performCommand(sender, strings);
