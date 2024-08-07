@@ -150,8 +150,14 @@ public class ResolveLagScheduler extends Scheduler {
 
                     // 判断是否为特殊实体
                     for (String s : ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ENTITY) {
-                        if (!entity.getType().getKey().toString().equalsIgnoreCase(s))
-                            continue;
+                        try {
+                            if (!entity.getType().getKey().toString().equalsIgnoreCase(s))
+                                continue;
+                        } catch (Exception e) {
+                            if (!entity.getType().toString().equalsIgnoreCase(s))
+                                continue;
+                        }
+
 
                         return;
                     }
