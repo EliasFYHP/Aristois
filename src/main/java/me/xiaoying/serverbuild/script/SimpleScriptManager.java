@@ -11,6 +11,7 @@ import me.xiaoying.serverbuild.script.scripts.SendScript;
 import me.xiaoying.serverbuild.script.scripts.TitleScript;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -47,18 +48,19 @@ public class SimpleScriptManager implements ScriptManager {
     }
 
     @Override
-    public void performScript(String command, Player player) {
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SBPlugin.getInstance(), () -> callScript(command, player));
+    public void performScript(String command, CommandSender sender) {
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(SBPlugin.getInstance(), () -> callScript(command, sender));
     }
 
-    private void callScript(String command, Player player) {
+    private void callScript(String command, CommandSender sender) {
         command = new VariableFactory(command)
                 .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
                 .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
-                .player(player)
-                .placeholder(player)
                 .color()
                 .toString();
+        if (sender instanceof Player)
+            command = new VariableFactory(command).player((Player) sender).placeholder((Player) sender).toString();
+
         if (command.endsWith("§r")) {
             StringBuilder stringBuilder = new StringBuilder();
             String[] split = command.split("");
@@ -86,7 +88,7 @@ public class SimpleScriptManager implements ScriptManager {
             }
 
             for (String string : strings)
-                this.callScript(string, player);
+                this.callScript(string, sender);
             return;
         }
 
@@ -95,7 +97,7 @@ public class SimpleScriptManager implements ScriptManager {
 
         // process first
         if (script.processFirst()) {
-            script.performCommand(player, functions);
+            script.performCommand(sender, functions);
             return;
         }
 
@@ -105,12 +107,12 @@ public class SimpleScriptManager implements ScriptManager {
             return;
 
         if (strings.length == 1 && strings[0].equalsIgnoreCase(command)) {
-            script.performCommand(player, functions);
+            script.performCommand(sender, functions);
             return;
         }
 
         for (String string : strings)
-            this.callScript(string, player);
+            this.callScript(string, sender);
     }
 
     @Override
