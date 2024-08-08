@@ -6,8 +6,6 @@ import me.xiaoying.serverbuild.entity.ResolveLagEntity;
 import me.xiaoying.serverbuild.file.FileResolveLag;
 import me.xiaoying.serverbuild.scheduler.ResolveLagScheduler;
 import me.xiaoying.serverbuild.utils.YamlUtil;
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 
 import java.util.*;
 
