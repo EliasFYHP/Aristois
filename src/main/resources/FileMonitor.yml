@@ -1,0 +1,33 @@
+#FileMonitor 文件检测
+
+#开关
+Enable: true
+
+#设置(如若无法更改请查看是否在 Config.yml 文件中启用了全局配置)
+Setting:
+  #%date% 变量格式(如若无法编辑修改，请检查是否在 Config.yml 开启了全局配置)
+  DateFormat: "yyyy/MM/dd-HH:mm:ss"
+  #%prefix% 变量内容(如若无法编辑修改，请检查是否在 Config.yml 开启了全局变量配置)
+  Prefix: "&a[&bResolveLag&a]&e>> "
+
+#文件检测配置
+FileMonitor:
+  #文件变更后执行 ServerBuild 脚本
+  Event: |-
+    title *{identity=op} {title:"&6检测到文件更新 &e%file%", subtitle:"&b已自动重载对应Function"}
+    actionbar *{permission=sb.fm.admin} %prefix%&6检测到文件 &e%file% &6变动，自动更新对应 Function
+    send *{identity=op} \n%prefix%&6检测到文件 &e%file% &6变动，自动更新对应 Function\n
+    log %prefix%&6检测到文件 &e%file% &6变动，自动更新对应 Function
+
+#词条
+Message:
+  #重载插件
+  Reload: "%prefix%&a已重载！"
+  #无权限提示
+  MissingPermission: "%prefix%&c你无法这样做！"
+  #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
+  Help: |-
+    
+    &a<-=-=-=-=-=-=-=-=-=-= &e&lFileMonitor &a=-=-=-=-=-=-=-=-=-=->
+    &b/fm reload &7重载
+    &f

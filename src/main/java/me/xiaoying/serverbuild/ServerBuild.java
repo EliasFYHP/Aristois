@@ -6,6 +6,7 @@ import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.file.FileConfig;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
+import me.xiaoying.serverbuild.module.FileMonitorModule;
 import me.xiaoying.serverbuild.module.ResolveLagModule;
 import me.xiaoying.serverbuild.module.WelcomeMessageModule;
 import me.xiaoying.serverbuild.script.SimpleScriptManager;
@@ -90,6 +91,7 @@ public class ServerBuild extends JavaPlugin {
         // Module
         SBPlugin.getModuleManager().registerModule(new ChatFormatModule());
         SBPlugin.getModuleManager().registerModule(new ResolveLagModule());
+        SBPlugin.getModuleManager().registerModule(new FileMonitorModule());
         SBPlugin.getModuleManager().registerModule(new WelcomeMessageModule());
     }
 
