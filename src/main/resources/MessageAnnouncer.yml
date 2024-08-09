@@ -1,0 +1,40 @@
+#自动公告
+
+#开关
+Enable: false
+
+#设置(如若无法更改请查看是否在 Config.yml 文件中启用了全局配置)
+Setting:
+  #%date% 变量格式(如若无法编辑修改，请检查是否在 Config.yml 开启了全局配置)
+  DateFormat: "yyyy/MM/dd-HH:mm:ss"
+  #%prefix% 变量内容(如若无法编辑修改，请检查是否在 Config.yml 开启了全局变量配置)
+  Prefix: "&a[&bMessageAnnouncer&a]&e>> "
+
+#自动公告设置
+MessageAnnouncer:
+  #公告间隔时间
+  Delay: 120
+  #公告组
+  Announcers:
+    #公告组名称，可以在yaml允许的情况下任意修改
+    Group1: |-
+      send 公告1
+      title {"title": "公告1"}
+      actionbar 公告1
+    Group2: |-
+      send 公告2
+      title {"title": "公告2"}
+      actionbar 公告2
+
+#词条
+Message:
+  #重载
+  Reload: "%prefix%&a重载完成!"
+  #无权限
+  MissingPermission: "%prefix%&c没有权限这么做!"
+  #指令提示--谁改谁憨憨，反正只是用来提示用的，出现问题我才不负责呢，哼！
+  Help: |-
+    
+    &a<-=-=-=-=-=-=-=-=-=-= &e&lMessageAnnouncer &a=-=-=-=-=-=-=-=-=-=->
+    &b/ma reload &7重载
+    &r
