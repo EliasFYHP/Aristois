@@ -4,7 +4,6 @@ import me.xiaoying.serverbuild.constant.FileMonitorConstant;
 import me.xiaoying.serverbuild.listener.FileMonitorListener;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.apache.commons.io.monitor.FileAlterationListener;
-import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 
