@@ -28,6 +28,7 @@ MessageAnnouncer:
         title {"title": "公告1", "subtitle": "副标题"}
         actionbar 公告1
     Group2:
+      #公告权限，没权限则不会发送该公告
       Permission: "ma.default"
       #执行脚本命令
       Script: |-
