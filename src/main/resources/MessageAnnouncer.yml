@@ -19,11 +19,11 @@ MessageAnnouncer:
     #公告组名称，可以在yaml允许的情况下任意修改
     Group1: |-
       send 公告1
-      title {"title": "公告1"}
+      title {"title": "公告1", "subtitle": "副标题"}
       actionbar 公告1
     Group2: |-
       send 公告2
-      title {"title": "公告2"}
+      title {"title": "公告2", "subtitle": "副标题", "in": 10, "stay": 70, "out": 20}
       actionbar 公告2
 
 #词条
