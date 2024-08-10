@@ -1,4 +1,6 @@
 #自动公告
+#其实更像是定时执行脚本命令，具体是什么效果看的是配置编写的人是怎么设置的
+#我想以后可能会支持定时功能
 
 #开关
 Enable: false
@@ -17,14 +19,21 @@ MessageAnnouncer:
   #公告组
   Announcers:
     #公告组名称，可以在yaml允许的情况下任意修改
-    Group1: |-
-      send 公告1
-      title {"title": "公告1", "subtitle": "副标题"}
-      actionbar 公告1
-    Group2: |-
-      send 公告2
-      title {"title": "公告2", "subtitle": "副标题", "in": 10, "stay": 70, "out": 20}
-      actionbar 公告2
+    Group1:
+      #公告权限，没权限则不会发送该公告
+      Permission: "ma.default"
+      #执行脚本命令
+      Script: |-
+        send 公告1
+        title {"title": "公告1", "subtitle": "副标题"}
+        actionbar 公告1
+    Group2:
+      Permission: "ma.default"
+      #执行脚本命令
+      Script: |-
+        send 公告2
+        title {"title": "公告2", "subtitle": "副标题", "in": 10, "stay": 70, "out": 20}
+        actionbar 公告2
 
 #词条
 Message:
