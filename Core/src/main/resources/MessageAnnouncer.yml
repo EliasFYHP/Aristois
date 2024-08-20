@@ -20,7 +20,7 @@ MessageAnnouncer:
   Announcers:
     #公告组名称，可以在yaml允许的情况下任意修改
     Group1:
-      #公告权限，没权限则不会发送该公告
+      #公告权限，没权限则不会发送该公告(若有sb.admin或sb.ma.admin则无视权限判断)
       Permission: "ma.default"
       #执行脚本命令
       Script: |-
@@ -28,7 +28,7 @@ MessageAnnouncer:
         title {"title": "公告1", "subtitle": "副标题"}
         actionbar 公告1
     Group2:
-      #公告权限，没权限则不会发送该公告
+      #公告权限，没权限则不会发送该公告(若有sb.admin或sb.ma.admin则无视权限判断)
       Permission: "ma.default"
       #执行脚本命令
       Script: |-
