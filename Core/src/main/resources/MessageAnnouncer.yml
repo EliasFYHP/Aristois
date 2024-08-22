@@ -20,21 +20,17 @@ MessageAnnouncer:
   Announcers:
     #公告组名称，可以在yaml允许的情况下任意修改
     Group1:
-      #公告权限，没权限则不会发送该公告(若有sb.admin或sb.ma.admin则无视权限判断)
-      Permission: "ma.default"
       #执行脚本命令
       Script: |-
-        send 公告1
-        title {"title": "公告1", "subtitle": "副标题"}
-        actionbar 公告1
+        send *{permission=ma.default} 公告1
+        title *{permission=ma.default} {"title": "公告1", "subtitle": "副标题"}
+        actionbar *{permission=ma.default} 公告1
     Group2:
-      #公告权限，没权限则不会发送该公告(若有sb.admin或sb.ma.admin则无视权限判断)
-      Permission: "ma.default"
       #执行脚本命令
       Script: |-
-        send 公告2
-        title {"title": "公告2", "subtitle": "副标题", "in": 10, "stay": 70, "out": 20}
-        actionbar 公告2
+        send *{permission=ma.default} 公告2
+        title *{permission=ma.default} {"title": "公告2", "subtitle": "副标题", "in": 10, "stay": 70, "out": 20}
+        actionbar *{permission=ma.default} 公告2
 
 #词条
 Message:
