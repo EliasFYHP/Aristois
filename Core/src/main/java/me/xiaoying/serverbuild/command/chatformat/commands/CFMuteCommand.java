@@ -2,10 +2,10 @@ package me.xiaoying.serverbuild.command.chatformat.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.constant.ConstantCommon;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileChatFormat;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
 import me.xiaoying.serverbuild.utils.DateUtil;
 import me.xiaoying.serverbuild.utils.ServerUtil;
@@ -26,9 +26,9 @@ public class CFMuteCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(ChatFormatConstant.MESSAGE_HELP)
-                .prefix(ChatFormatConstant.SETTING_PREFIX)
-                .date(ChatFormatConstant.SETTING_DATEFORMAT)
+        list.add(new VariableFactory(FileChatFormat.MESSAGE_HELP)
+                .prefix(FileChatFormat.SETTING_PREFIX)
+                .date(FileChatFormat.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;
@@ -37,9 +37,9 @@ public class CFMuteCommand extends SCommand {
     @Override
     public void performCommand(CommandSender sender, String[] strings) {
         if (!ServerUtil.hasPermission(sender, "sb.admin", "sb.cf.admin") && !sender.isOp()) {
-            sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_MISSING_PERMISSION)
-                            .prefix(ChatFormatConstant.SETTING_PREFIX)
-                            .date(ChatFormatConstant.SETTING_DATEFORMAT)
+            sender.sendMessage(new VariableFactory(FileChatFormat.MESSAGE_MISSING_PERMISSION)
+                            .prefix(FileChatFormat.SETTING_PREFIX)
+                            .date(FileChatFormat.SETTING_DATEFORMAT)
                             .color()
                             .toString());
             return;
@@ -53,14 +53,14 @@ public class CFMuteCommand extends SCommand {
         Date date;
         String over;
         if (strings.length == 1)
-            date = DateUtil.translate(ChatFormatConstant.MUTE_DEFAULT_TIME, Date.class);
+            date = DateUtil.translate(FileChatFormat.MUTE_DEFAULT_TIME, Date.class);
         else
             date = DateUtil.translate(strings[1], Date.class);
 
         if (date == null) {
-            sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_MUTE_WRONG)
-                            .prefix(ChatFormatConstant.SETTING_PREFIX)
-                            .date(ChatFormatConstant.SETTING_DATEFORMAT)
+            sender.sendMessage(new VariableFactory(FileChatFormat.MESSAGE_MUTE_WRONG)
+                            .prefix(FileChatFormat.SETTING_PREFIX)
+                            .date(FileChatFormat.SETTING_DATEFORMAT)
                             .color()
                             .toString());
             return;
@@ -69,34 +69,34 @@ public class CFMuteCommand extends SCommand {
         over = DateUtil.getDate(DateUtil.getDate(date, ConstantCommon.DATE_FORMAT));
 
         if (player == null) {
-            sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_NOT_FOUND_PLAYER)
-                    .prefix(ChatFormatConstant.SETTING_PREFIX)
-                    .date(ChatFormatConstant.SETTING_DATEFORMAT)
+            sender.sendMessage(new VariableFactory(FileChatFormat.MESSAGE_NOT_FOUND_PLAYER)
+                    .prefix(FileChatFormat.SETTING_PREFIX)
+                    .date(FileChatFormat.SETTING_DATEFORMAT)
                     .color()
                     .toString());
             return;
         }
 
-        Delete delete = new Delete(ChatFormatConstant.TABLE_MUTE);
+        Delete delete = new Delete(FileChatFormat.TABLE_MUTE);
         delete.condition(new Condition("uuid", player.getUniqueId().toString(), Condition.Type.EQUAL));
 
-        Insert insert = new Insert(ChatFormatConstant.TABLE_MUTE);
+        Insert insert = new Insert(FileChatFormat.TABLE_MUTE);
         insert.insert(player.getUniqueId().toString(), save, over);
         SBPlugin.getSqlFactory().run(delete, insert);
 
 
         // calculate time
         long lastTime = DateUtil.getDateReduce(over, save, ConstantCommon.DATE_FORMAT) / 1000;
-        player.sendMessage(new VariableFactory(ChatFormatConstant.MUTE_MESSAGE)
-                        .prefix(ChatFormatConstant.SETTING_PREFIX)
-                        .date(ChatFormatConstant.SETTING_DATEFORMAT)
+        player.sendMessage(new VariableFactory(FileChatFormat.MUTE_MESSAGE)
+                        .prefix(FileChatFormat.SETTING_PREFIX)
+                        .date(FileChatFormat.SETTING_DATEFORMAT)
                         .time(lastTime)
                         .color()
                         .toString());
 
-        sender.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_MUTE_SUCCESS)
-                        .prefix(ChatFormatConstant.SETTING_PREFIX)
-                        .date(ChatFormatConstant.SETTING_DATEFORMAT)
+        sender.sendMessage(new VariableFactory(FileChatFormat.MESSAGE_MUTE_SUCCESS)
+                        .prefix(FileChatFormat.SETTING_PREFIX)
+                        .date(FileChatFormat.SETTING_DATEFORMAT)
                         .time(lastTime)
                         .color()
                         .toString());

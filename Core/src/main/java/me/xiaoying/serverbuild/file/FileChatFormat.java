@@ -1,47 +1,77 @@
 package me.xiaoying.serverbuild.file;
 
-import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.constant.ConfigConstant;
+
+import java.util.List;
 
 /**
  * File ChatFormat.yml
  */
 public class FileChatFormat extends File {
+    public static String TABLE_MUTE = "cf_mute";
+
+    public static boolean ENABLE;
+
+    public static String SETTING_DATEFORMAT, SETTING_PREFIX;
+
+    public static String MUTE_DEFAULT_TIME, MUTE_MESSAGE;
+
+    public static boolean CHARACTER_LIMIT_ENABLE;
+    public static int CHARACTER_LIMIT_LIMIT;
+    public static String CHARACTER_LIMIT_MESSAGE;
+
+    public static boolean CALL_ENABLE;
+    public static String CALL_KEY, CALL_SOUND;
+
+    public static boolean BLACK_TERMS_ENABLE,
+            BLACK_TERMS_FOR_EVERY_BODY,
+            BLACK_TERMS_CANCEL;
+    public static String BLACK_TERMS_SCRIPT,
+            BLACK_TERMS_MESSAGE;
+    public static List<String> BLACK_TERMS_TERMS;
+
+    public static String MESSAGE_RELOAD,
+            MESSAGE_MISSING_PERMISSION,
+            MESSAGE_MUTE_WRONG,
+            MESSAGE_MUTE_SUCCESS,
+            MESSAGE_NOT_FOUND_PLAYER,
+            MESSAGE_HELP;
+
     public FileChatFormat() {
         super("ChatFormat.yml");
     }
 
     @Override
     public void onLoad() {
-        ChatFormatConstant.ENABLE = this.getConfiguration().getBoolean("Enable");
+        FileChatFormat.ENABLE = this.getConfiguration().getBoolean("Enable");
 
-        ChatFormatConstant.SETTING_DATEFORMAT = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
-        ChatFormatConstant.SETTING_PREFIX = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
+        FileChatFormat.SETTING_DATEFORMAT = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
+        FileChatFormat.SETTING_PREFIX = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
 
-        ChatFormatConstant.MUTE_DEFAULT_TIME = this.getConfiguration().getString("Mute.DefaultTime");
-        ChatFormatConstant.MUTE_MESSAGE = this.getConfiguration().getString("Mute.Message");
+        FileChatFormat.MUTE_DEFAULT_TIME = this.getConfiguration().getString("Mute.DefaultTime");
+        FileChatFormat.MUTE_MESSAGE = this.getConfiguration().getString("Mute.Message");
 
-        ChatFormatConstant.CHARACTER_LIMIT_ENABLE = this.getConfiguration().getBoolean("CharacterLimit.Enable");
-        ChatFormatConstant.CHARACTER_LIMIT_LIMIT = this.getConfiguration().getInt("CharacterLimit.Limit");
-        ChatFormatConstant.CHARACTER_LIMIT_MESSAGE = this.getConfiguration().getString("CharacterLimit.Message");
+        FileChatFormat.CHARACTER_LIMIT_ENABLE = this.getConfiguration().getBoolean("CharacterLimit.Enable");
+        FileChatFormat.CHARACTER_LIMIT_LIMIT = this.getConfiguration().getInt("CharacterLimit.Limit");
+        FileChatFormat.CHARACTER_LIMIT_MESSAGE = this.getConfiguration().getString("CharacterLimit.Message");
 
-        ChatFormatConstant.CALL_ENABLE = this.getConfiguration().getBoolean("Call.Enable");
-        ChatFormatConstant.CALL_KEY = this.getConfiguration().getString("Call.Key");
-        ChatFormatConstant.CALL_SOUND = this.getConfiguration().getString("Call.Sound");
+        FileChatFormat.CALL_ENABLE = this.getConfiguration().getBoolean("Call.Enable");
+        FileChatFormat.CALL_KEY = this.getConfiguration().getString("Call.Key");
+        FileChatFormat.CALL_SOUND = this.getConfiguration().getString("Call.Sound");
 
-        ChatFormatConstant.BLACK_TERMS_ENABLE = this.getConfiguration().getBoolean("BlackTerms.Enable");
-        ChatFormatConstant.BLACK_TERMS_FOR_EVERY_BODY = this.getConfiguration().getBoolean("BlackTerms.ForEveryBody");
-        ChatFormatConstant.BLACK_TERMS_CANCEL = this.getConfiguration().getBoolean("BlackTerms.Cancel");
-        ChatFormatConstant.BLACK_TERMS_SCRIPT = this.getConfiguration().getString("BlackTerms.Script");
-        ChatFormatConstant.BLACK_TERMS_MESSAGE = this.getConfiguration().getString("BlackTerms.Message");
-        ChatFormatConstant.BLACK_TERMS_TERMS = this.getConfiguration().getStringList("BlackTerms.Terms");
+        FileChatFormat.BLACK_TERMS_ENABLE = this.getConfiguration().getBoolean("BlackTerms.Enable");
+        FileChatFormat.BLACK_TERMS_FOR_EVERY_BODY = this.getConfiguration().getBoolean("BlackTerms.ForEveryBody");
+        FileChatFormat.BLACK_TERMS_CANCEL = this.getConfiguration().getBoolean("BlackTerms.Cancel");
+        FileChatFormat.BLACK_TERMS_SCRIPT = this.getConfiguration().getString("BlackTerms.Script");
+        FileChatFormat.BLACK_TERMS_MESSAGE = this.getConfiguration().getString("BlackTerms.Message");
+        FileChatFormat.BLACK_TERMS_TERMS = this.getConfiguration().getStringList("BlackTerms.Terms");
 
-        ChatFormatConstant.MESSAGE_RELOAD = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
-        ChatFormatConstant.MESSAGE_MISSING_PERMISSION = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
-        ChatFormatConstant.MESSAGE_HELP = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
-        ChatFormatConstant.MESSAGE_MUTE_WRONG = this.getConfiguration().getString("Message.MuteWrong");
-        ChatFormatConstant.MESSAGE_MUTE_SUCCESS = this.getConfiguration().getString("Message.MuteSuccess");
-        ChatFormatConstant.MESSAGE_NOT_FOUND_PLAYER = this.getConfiguration().getString("Message.NotFoundPlayer");
+        FileChatFormat.MESSAGE_RELOAD = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
+        FileChatFormat.MESSAGE_MISSING_PERMISSION = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
+        FileChatFormat.MESSAGE_HELP = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
+        FileChatFormat.MESSAGE_MUTE_WRONG = this.getConfiguration().getString("Message.MuteWrong");
+        FileChatFormat.MESSAGE_MUTE_SUCCESS = this.getConfiguration().getString("Message.MuteSuccess");
+        FileChatFormat.MESSAGE_NOT_FOUND_PLAYER = this.getConfiguration().getString("Message.NotFoundPlayer");
     }
 
     @Override

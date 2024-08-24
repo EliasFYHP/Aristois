@@ -1,10 +1,10 @@
 package me.xiaoying.serverbuild.listener;
 
-import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.constant.ConstantCommon;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ChatFormatEntity;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileChatFormat;
 import me.xiaoying.serverbuild.module.ChatFormatModule;
 import me.xiaoying.serverbuild.utils.DateUtil;
 import me.xiaoying.serverbuild.utils.PlayerUtil;
@@ -43,32 +43,32 @@ public class ChatFormatListener implements Listener {
         columns.add("uuid");
         columns.add("save");
         columns.add("over");
-        Select select = new Select(columns, ChatFormatConstant.TABLE_MUTE);
+        Select select = new Select(columns, FileChatFormat.TABLE_MUTE);
         select.condition(new Condition("uuid", player.getUniqueId().toString(), Condition.Type.EQUAL));
         List<Table> run = SBPlugin.getSqlFactory().run(select);
         if (run.size() != 0 && run.get(0).getRecords().size() != 0) {
             String over = (String) run.get(0).getRecords().get(0).get("over");
             long lastTime;
             if ((lastTime = DateUtil.getDateReduce(over, DateUtil.getDate(ConstantCommon.DATE_FORMAT), ConstantCommon.DATE_FORMAT)) > 0) {
-                player.sendMessage(new VariableFactory(ChatFormatConstant.MUTE_MESSAGE)
-                        .prefix(ChatFormatConstant.SETTING_PREFIX)
-                        .date(ChatFormatConstant.SETTING_DATEFORMAT)
+                player.sendMessage(new VariableFactory(FileChatFormat.MUTE_MESSAGE)
+                        .prefix(FileChatFormat.SETTING_PREFIX)
+                        .date(FileChatFormat.SETTING_DATEFORMAT)
                         .time(lastTime / 1000)
                         .color()
                         .toString());
                 return;
             }
 
-            Delete delete = new Delete(ChatFormatConstant.TABLE_MUTE);
+            Delete delete = new Delete(FileChatFormat.TABLE_MUTE);
             delete.condition(new Condition("uuid", player.getUniqueId().toString(), Condition.Type.EQUAL));
             SBPlugin.getSqlFactory().run(delete);
         }
 
         // color
         if (event.getMessage().contains("&") && (!player.isOp() && !PlayerUtil.hasPermission(player, "sb.admin", "sb.cf.admin", "sb.cf.color"))) {
-            player.sendMessage(new VariableFactory(ChatFormatConstant.MESSAGE_MISSING_PERMISSION)
-                    .date(ChatFormatConstant.SETTING_DATEFORMAT)
-                    .prefix(ChatFormatConstant.SETTING_PREFIX)
+            player.sendMessage(new VariableFactory(FileChatFormat.MESSAGE_MISSING_PERMISSION)
+                    .date(FileChatFormat.SETTING_DATEFORMAT)
+                    .prefix(FileChatFormat.SETTING_PREFIX)
                     .player(player)
                     .placeholder(player)
                     .color()
@@ -77,10 +77,10 @@ public class ChatFormatListener implements Listener {
         }
 
         // character limit
-        if (ChatFormatConstant.CHARACTER_LIMIT_ENABLE & message.length() > ChatFormatConstant.CHARACTER_LIMIT_LIMIT) {
-            player.sendMessage(new VariableFactory(ChatFormatConstant.CHARACTER_LIMIT_MESSAGE)
-                            .date(ChatFormatConstant.SETTING_DATEFORMAT)
-                            .prefix(ChatFormatConstant.SETTING_PREFIX)
+        if (FileChatFormat.CHARACTER_LIMIT_ENABLE & message.length() > FileChatFormat.CHARACTER_LIMIT_LIMIT) {
+            player.sendMessage(new VariableFactory(FileChatFormat.CHARACTER_LIMIT_MESSAGE)
+                            .date(FileChatFormat.SETTING_DATEFORMAT)
+                            .prefix(FileChatFormat.SETTING_PREFIX)
                             .player(player)
                             .placeholder(player)
                             .color()
@@ -90,23 +90,23 @@ public class ChatFormatListener implements Listener {
 
         boolean send = true;
         // black terms
-        if (ChatFormatConstant.BLACK_TERMS_ENABLE) {
-            for (String string : ChatFormatConstant.BLACK_TERMS_TERMS) {
+        if (FileChatFormat.BLACK_TERMS_ENABLE) {
+            for (String string : FileChatFormat.BLACK_TERMS_TERMS) {
                 if (!StringUtil.match(string, message, 0, 0) && !message.contains(string))
                     continue;
 
-                if (ChatFormatConstant.BLACK_TERMS_CANCEL)
+                if (FileChatFormat.BLACK_TERMS_CANCEL)
                     send = false;
 
-                if (ChatFormatConstant.BLACK_TERMS_FOR_EVERY_BODY) {
-                    player.sendMessage(new VariableFactory(ChatFormatConstant.BLACK_TERMS_MESSAGE)
-                                    .prefix(ChatFormatConstant.SETTING_PREFIX)
+                if (FileChatFormat.BLACK_TERMS_FOR_EVERY_BODY) {
+                    player.sendMessage(new VariableFactory(FileChatFormat.BLACK_TERMS_MESSAGE)
+                                    .prefix(FileChatFormat.SETTING_PREFIX)
                                     .player(player)
-                                    .date(ChatFormatConstant.SETTING_DATEFORMAT)
+                                    .date(FileChatFormat.SETTING_DATEFORMAT)
                                     .placeholder(player)
                                     .color()
                                     .toString());
-                    String[] split = ChatFormatConstant.BLACK_TERMS_SCRIPT.split("\n");
+                    String[] split = FileChatFormat.BLACK_TERMS_SCRIPT.split("\n");
                     for (String s : split)
                         SBPlugin.getScriptManager().performScript(s, player);
                     break;
@@ -117,14 +117,14 @@ public class ChatFormatListener implements Listener {
                     break;
                 }
 
-                player.sendMessage(new VariableFactory(ChatFormatConstant.BLACK_TERMS_MESSAGE)
-                        .prefix(ChatFormatConstant.SETTING_PREFIX)
+                player.sendMessage(new VariableFactory(FileChatFormat.BLACK_TERMS_MESSAGE)
+                        .prefix(FileChatFormat.SETTING_PREFIX)
                         .player(player)
-                        .date(ChatFormatConstant.SETTING_DATEFORMAT)
+                        .date(FileChatFormat.SETTING_DATEFORMAT)
                         .placeholder(player)
                         .color()
                         .toString());
-                String[] split = ChatFormatConstant.BLACK_TERMS_SCRIPT.split("\n");
+                String[] split = FileChatFormat.BLACK_TERMS_SCRIPT.split("\n");
                 for (String s : split)
                     SBPlugin.getScriptManager().performScript(s, player);
             }
@@ -155,19 +155,19 @@ public class ChatFormatListener implements Listener {
             message = format;
         }
         message = new VariableFactory(message)
-                .date(ChatFormatConstant.SETTING_DATEFORMAT)
-                .prefix(ChatFormatConstant.SETTING_PREFIX)
+                .date(FileChatFormat.SETTING_DATEFORMAT)
+                .prefix(FileChatFormat.SETTING_PREFIX)
                 .player(player)
                 .placeholder(player)
                 .color()
                 .toString();
 
         // match @
-        if (ChatFormatConstant.CALL_ENABLE) {
+        if (FileChatFormat.CALL_ENABLE) {
             List<Player> atPlayers = this.at(message);
             for (Player atPlayer : atPlayers) {
-                message = new VariableFactory(message.replace(ChatFormatConstant.CALL_KEY + atPlayer.getName(), "&b" + ChatFormatConstant.CALL_KEY + atPlayer.getName() + "&f")).color().toString();
-                atPlayer.playSound(atPlayer.getLocation(), ChatFormatConstant.CALL_SOUND, 1F, 0F);
+                message = new VariableFactory(message.replace(FileChatFormat.CALL_KEY + atPlayer.getName(), "&b" + FileChatFormat.CALL_KEY + atPlayer.getName() + "&f")).color().toString();
+                atPlayer.playSound(atPlayer.getLocation(), FileChatFormat.CALL_SOUND, 1F, 0F);
             }
         }
 
@@ -214,7 +214,7 @@ public class ChatFormatListener implements Listener {
     }
 
     private List<Player> at(String message) {
-        if (!message.contains(ChatFormatConstant.CALL_KEY))
+        if (!message.contains(FileChatFormat.CALL_KEY))
             return new ArrayList<>();
 
         Player player = null;
@@ -222,7 +222,7 @@ public class ChatFormatListener implements Listener {
         List<Player> players = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
         for (String s : message.split("")) {
-            if (s.equalsIgnoreCase(ChatFormatConstant.CALL_KEY)) {
+            if (s.equalsIgnoreCase(FileChatFormat.CALL_KEY)) {
                 if (stringBuilder.toString().length() != 0) {
                     players.add(player);
                     stringBuilder = new StringBuilder();

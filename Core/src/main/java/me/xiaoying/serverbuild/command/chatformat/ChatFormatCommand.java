@@ -5,8 +5,8 @@ import me.xiaoying.serverbuild.command.RegisteredCommand;
 import me.xiaoying.serverbuild.command.SCommand;
 import me.xiaoying.serverbuild.command.chatformat.commands.CFMuteCommand;
 import me.xiaoying.serverbuild.command.chatformat.commands.CFReloadCommand;
-import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileChatFormat;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -24,9 +24,9 @@ public class ChatFormatCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(ChatFormatConstant.MESSAGE_HELP)
-                        .prefix(ChatFormatConstant.SETTING_PREFIX)
-                        .date(ChatFormatConstant.SETTING_DATEFORMAT)
+        list.add(new VariableFactory(FileChatFormat.MESSAGE_HELP)
+                        .prefix(FileChatFormat.SETTING_PREFIX)
+                        .date(FileChatFormat.SETTING_DATEFORMAT)
                         .color()
                         .toString());
         return list;

@@ -1,7 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
 import me.xiaoying.serverbuild.command.chatformat.ChatFormatCommand;
-import me.xiaoying.serverbuild.constant.ChatFormatConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ChatFormatEntity;
 import me.xiaoying.serverbuild.file.FileChatFormat;
@@ -31,7 +30,7 @@ public class ChatFormatModule extends Module {
 
     @Override
     public boolean ready() {
-        return ChatFormatConstant.ENABLE;
+        return FileChatFormat.ENABLE;
     }
 
     @Override
@@ -77,7 +76,7 @@ public class ChatFormatModule extends Module {
         columns.add(new Column("uuid", "varchar", 255, false));
         columns.add(new Column("save", "varchar", 255, false));
         columns.add(new Column("over", "varchar", 255, false));
-        Create create = new Create(columns, ChatFormatConstant.TABLE_MUTE);
+        Create create = new Create(columns, FileChatFormat.TABLE_MUTE);
         SBPlugin.getSqlFactory().run(create);
     }
 }
