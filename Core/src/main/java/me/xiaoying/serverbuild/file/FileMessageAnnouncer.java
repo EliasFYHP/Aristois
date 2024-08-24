@@ -1,27 +1,36 @@
 package me.xiaoying.serverbuild.file;
 
-import me.xiaoying.serverbuild.constant.MessageAnnouncerConstant;
-
 /**
  * File MessageAnnouncer.yml
  */
 public class FileMessageAnnouncer extends File {
+    public static boolean ENABLE;
+
+    public static String SETTING_DATEFORMAT,
+            SETTING_PREFIX;
+
+    public static int MESSAGE_ANNOUNCER_DELAY;
+
+    public static String MESSAGE_RELOAD,
+            MESSAGE_MISSING_PERMISSION,
+            MESSAGE_HELP;
+
     public FileMessageAnnouncer() {
         super("MessageAnnouncer.yml");
     }
 
     @Override
     public void onLoad() {
-        MessageAnnouncerConstant.ENABLE = this.getConfiguration().getBoolean("Enable");
+        FileMessageAnnouncer.ENABLE = this.getConfiguration().getBoolean("Enable");
 
-        MessageAnnouncerConstant.SETTING_PREFIX = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_VARIABLE_ENABLE ? FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
-        MessageAnnouncerConstant.SETTING_DATEFORMAT = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_VARIABLE_ENABLE ? FileConfig.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
+        FileMessageAnnouncer.SETTING_PREFIX = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_VARIABLE_ENABLE ? FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
+        FileMessageAnnouncer.SETTING_DATEFORMAT = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_VARIABLE_ENABLE ? FileConfig.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
 
-        MessageAnnouncerConstant.MESSAGE_ANNOUNCER_DELAY = this.getConfiguration().getInt("MessageAnnouncer.Delay");
+        FileMessageAnnouncer.MESSAGE_ANNOUNCER_DELAY = this.getConfiguration().getInt("MessageAnnouncer.Delay");
 
-        MessageAnnouncerConstant.MESSAGE_RELOAD = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
-        MessageAnnouncerConstant.MESSAGE_MISSING_PERMISSION = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
-        MessageAnnouncerConstant.MESSAGE_HELP = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
+        FileMessageAnnouncer.MESSAGE_RELOAD = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
+        FileMessageAnnouncer.MESSAGE_MISSING_PERMISSION = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
+        FileMessageAnnouncer.MESSAGE_HELP = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
     }
 
     @Override

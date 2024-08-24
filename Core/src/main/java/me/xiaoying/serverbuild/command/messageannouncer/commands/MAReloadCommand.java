@@ -2,9 +2,9 @@ package me.xiaoying.serverbuild.command.messageannouncer.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.MessageAnnouncerConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileMessageAnnouncer;
 import me.xiaoying.serverbuild.module.MessageAnnouncerModule;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.command.CommandSender;
@@ -17,9 +17,9 @@ public class MAReloadCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(MessageAnnouncerConstant.MESSAGE_HELP)
-                .prefix(MessageAnnouncerConstant.SETTING_PREFIX)
-                .date(MessageAnnouncerConstant.SETTING_DATEFORMAT)
+        list.add(new VariableFactory(FileMessageAnnouncer.MESSAGE_HELP)
+                .prefix(FileMessageAnnouncer.SETTING_PREFIX)
+                .date(FileMessageAnnouncer.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;
@@ -28,9 +28,9 @@ public class MAReloadCommand extends SCommand {
     @Override
     public void performCommand(CommandSender sender, String[] args) {
         if (!ServerUtil.hasPermission(sender, "sb.admin", "sb.wm.admin") && !sender.isOp()) {
-            sender.sendMessage(new VariableFactory(MessageAnnouncerConstant.MESSAGE_MISSING_PERMISSION)
-                    .prefix(MessageAnnouncerConstant.SETTING_PREFIX)
-                    .date(MessageAnnouncerConstant.SETTING_DATEFORMAT)
+            sender.sendMessage(new VariableFactory(FileMessageAnnouncer.MESSAGE_MISSING_PERMISSION)
+                    .prefix(FileMessageAnnouncer.SETTING_PREFIX)
+                    .date(FileMessageAnnouncer.SETTING_DATEFORMAT)
                     .color()
                     .toString());
             return;
@@ -40,9 +40,9 @@ public class MAReloadCommand extends SCommand {
 
         messageAnnouncer.reload();
 
-        sender.sendMessage(new VariableFactory(MessageAnnouncerConstant.MESSAGE_RELOAD)
-                .prefix(MessageAnnouncerConstant.SETTING_PREFIX)
-                .date(MessageAnnouncerConstant.SETTING_DATEFORMAT)
+        sender.sendMessage(new VariableFactory(FileMessageAnnouncer.MESSAGE_RELOAD)
+                .prefix(FileMessageAnnouncer.SETTING_PREFIX)
+                .date(FileMessageAnnouncer.SETTING_DATEFORMAT)
                 .color()
                 .toString());
     }

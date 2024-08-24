@@ -1,12 +1,10 @@
 package me.xiaoying.serverbuild.scheduler;
 
-import me.xiaoying.serverbuild.constant.MessageAnnouncerConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.MessageAnnouncerEntity;
+import me.xiaoying.serverbuild.file.FileMessageAnnouncer;
 import me.xiaoying.serverbuild.module.MessageAnnouncerModule;
-import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 /**
  * Scheduler MessageAnnouncer
@@ -22,7 +20,7 @@ public class MessageAnnouncerScheduler extends Scheduler {
     @Override
     public Runnable getRunnable() {
         return () -> {
-            if (this.time < MessageAnnouncerConstant.MESSAGE_ANNOUNCER_DELAY) {
+            if (this.time < FileMessageAnnouncer.MESSAGE_ANNOUNCER_DELAY) {
                 this.time++;
                 return;
             }

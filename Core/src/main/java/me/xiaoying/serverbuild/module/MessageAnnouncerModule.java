@@ -1,7 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
 import me.xiaoying.serverbuild.command.messageannouncer.MessageAnnouncerCommand;
-import me.xiaoying.serverbuild.constant.MessageAnnouncerConstant;
 import me.xiaoying.serverbuild.entity.MessageAnnouncerEntity;
 import me.xiaoying.serverbuild.file.File;
 import me.xiaoying.serverbuild.file.FileMessageAnnouncer;
@@ -29,7 +28,7 @@ public class MessageAnnouncerModule extends Module {
 
     @Override
     public boolean ready() {
-        return MessageAnnouncerConstant.ENABLE;
+        return FileMessageAnnouncer.ENABLE;
     }
 
     @Override

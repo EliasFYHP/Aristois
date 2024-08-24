@@ -3,8 +3,8 @@ package me.xiaoying.serverbuild.command.messageannouncer;
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.RegisteredCommand;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.MessageAnnouncerConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileMessageAnnouncer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -17,9 +17,9 @@ public class MessageAnnouncerCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(MessageAnnouncerConstant.MESSAGE_HELP)
-                .prefix(MessageAnnouncerConstant.SETTING_PREFIX)
-                .date(MessageAnnouncerConstant.SETTING_DATEFORMAT)
+        list.add(new VariableFactory(FileMessageAnnouncer.MESSAGE_HELP)
+                .prefix(FileMessageAnnouncer.SETTING_PREFIX)
+                .date(FileMessageAnnouncer.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;
