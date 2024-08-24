@@ -1,5 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
+import me.xiaoying.serverbuild.command.messageannouncer.MessageAnnouncerCommand;
 import me.xiaoying.serverbuild.constant.MessageAnnouncerConstant;
 import me.xiaoying.serverbuild.entity.MessageAnnouncerEntity;
 import me.xiaoying.serverbuild.file.File;
@@ -38,7 +39,7 @@ public class MessageAnnouncerModule extends Module {
         this.registerFile(this.file);
 
         // command
-//        this.registerCommand(new MessageCommand());
+        this.registerCommand(new MessageAnnouncerCommand());
 
         // scheduler
         this.registerScheduler(new MessageAnnouncerScheduler());
