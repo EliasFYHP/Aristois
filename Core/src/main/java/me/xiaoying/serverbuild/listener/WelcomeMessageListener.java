@@ -1,9 +1,9 @@
 package me.xiaoying.serverbuild.listener;
 
-import me.xiaoying.serverbuild.constant.WelcomeMessageConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.WelcomeMessageEntity;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileWelcomeMessage;
 import me.xiaoying.serverbuild.module.WelcomeMessageModule;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.entity.Player;
@@ -41,8 +41,8 @@ public class WelcomeMessageListener implements Listener {
         event.setJoinMessage(null);
         for (String s : entity.getJoin().split("\n")) {
             s = new VariableFactory(s)
-                    .prefix(WelcomeMessageConstant.SETTING_PREFIX)
-                    .date(WelcomeMessageConstant.SETTING_DATEFORMAT)
+                    .prefix(FileWelcomeMessage.SETTING_PREFIX)
+                    .date(FileWelcomeMessage.SETTING_DATEFORMAT)
                     .placeholder(player)
                     .color()
                     .toString();
@@ -78,8 +78,8 @@ public class WelcomeMessageListener implements Listener {
         event.setQuitMessage(null);
         for (String s : entity.getQuit().split("\n")) {
             s = new VariableFactory(s)
-                    .prefix(WelcomeMessageConstant.SETTING_PREFIX)
-                    .date(WelcomeMessageConstant.SETTING_DATEFORMAT)
+                    .prefix(FileWelcomeMessage.SETTING_PREFIX)
+                    .date(FileWelcomeMessage.SETTING_DATEFORMAT)
                     .placeholder(player)
                     .color()
                     .toString();

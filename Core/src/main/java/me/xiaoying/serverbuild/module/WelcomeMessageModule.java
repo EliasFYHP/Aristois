@@ -1,7 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
 import me.xiaoying.serverbuild.command.welcomemessage.WelcomeMessageCommand;
-import me.xiaoying.serverbuild.constant.WelcomeMessageConstant;
 import me.xiaoying.serverbuild.entity.WelcomeMessageEntity;
 import me.xiaoying.serverbuild.file.FileWelcomeMessage;
 import me.xiaoying.serverbuild.listener.WelcomeMessageListener;
@@ -26,7 +25,7 @@ public class WelcomeMessageModule extends Module {
 
     @Override
     public boolean ready() {
-        return WelcomeMessageConstant.ENABLE;
+        return FileWelcomeMessage.ENABLE;
     }
 
     @Override

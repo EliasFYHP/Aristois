@@ -4,8 +4,8 @@ import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.RegisteredCommand;
 import me.xiaoying.serverbuild.command.SCommand;
 import me.xiaoying.serverbuild.command.welcomemessage.commands.WMReloadCommand;
-import me.xiaoying.serverbuild.constant.WelcomeMessageConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileWelcomeMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -22,9 +22,9 @@ public class WelcomeMessageCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(WelcomeMessageConstant.MESSAGE_HELP)
-                .prefix(WelcomeMessageConstant.SETTING_PREFIX)
-                .date(WelcomeMessageConstant.SETTING_DATEFORMAT)
+        list.add(new VariableFactory(FileWelcomeMessage.MESSAGE_HELP)
+                .prefix(FileWelcomeMessage.SETTING_PREFIX)
+                .date(FileWelcomeMessage.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;
