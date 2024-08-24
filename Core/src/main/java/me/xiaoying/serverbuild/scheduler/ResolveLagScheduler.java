@@ -1,9 +1,9 @@
 package me.xiaoying.serverbuild.scheduler;
 
-import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ResolveLagEntity;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileResolveLag;
 import me.xiaoying.serverbuild.module.ResolveLagModule;
 import me.xiaoying.serverbuild.utils.ListUtil;
 import me.xiaoying.serverbuild.utils.ServerUtil;
@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Scheduler ResolveLag
  */
 public class ResolveLagScheduler extends Scheduler {
-    private int time = ResolveLagConstant.RESOLVE_LAG_SECOND_TIME;
+    private int time = FileResolveLag.RESOLVE_LAG_SECOND_TIME;
     private int chunkTime = 0;
     private final ResolveLagModule resolveLagModule = (ResolveLagModule) SBPlugin.getModuleManager().getModule("ResolveLag");
 
@@ -30,13 +30,13 @@ public class ResolveLagScheduler extends Scheduler {
     @Override
     public Runnable getRunnable() {
         return () -> {
-            for (Integer i : ResolveLagConstant.RESOLVE_LAG_COUNT_TIME) {
+            for (Integer i : FileResolveLag.RESOLVE_LAG_COUNT_TIME) {
                 if (i != this.time)
                     continue;
 
-                ServerUtil.getOnlinePlayers().forEach(player -> player.sendMessage(new VariableFactory(ResolveLagConstant.CLEAR_MESSAGE_COUNT_DOWN)
-                        .prefix(ResolveLagConstant.SETTING_PREFIX)
-                        .date(ResolveLagConstant.SETTING_DATEFORMAT)
+                ServerUtil.getOnlinePlayers().forEach(player -> player.sendMessage(new VariableFactory(FileResolveLag.CLEAR_MESSAGE_COUNT_DOWN)
+                        .prefix(FileResolveLag.SETTING_PREFIX)
+                        .date(FileResolveLag.SETTING_DATEFORMAT)
                         .time(this.time)
                         .player(player)
                         .placeholder(player)
@@ -44,7 +44,7 @@ public class ResolveLagScheduler extends Scheduler {
                         .toString()));
             }
 
-            if (this.chunkTime >= ResolveLagConstant.RESOLVE_LAG_CHUNK_INTERVAL) {
+            if (this.chunkTime >= FileResolveLag.RESOLVE_LAG_CHUNK_INTERVAL) {
                 this.clearChunk();
                 this.chunkTime = 0;
                 return;
@@ -97,8 +97,8 @@ public class ResolveLagScheduler extends Scheduler {
 
             String message = entity.getMessage();
             ServerUtil.getOnlinePlayers().forEach(player -> player.sendMessage(new VariableFactory(message)
-                    .prefix(ResolveLagConstant.SETTING_PREFIX)
-                    .date(ResolveLagConstant.SETTING_DATEFORMAT)
+                    .prefix(FileResolveLag.SETTING_PREFIX)
+                    .date(FileResolveLag.SETTING_DATEFORMAT)
                     .amount(count)
                     .entities(entitiesCount)
                     .chunks(chunksCount)
@@ -106,7 +106,7 @@ public class ResolveLagScheduler extends Scheduler {
                     .placeholder(player)
                     .color()
                     .toString()));
-            this.time = ResolveLagConstant.RESOLVE_LAG_SECOND_TIME;
+            this.time = FileResolveLag.RESOLVE_LAG_SECOND_TIME;
             this.time--;
             this.chunkTime++;
         };
@@ -116,7 +116,7 @@ public class ResolveLagScheduler extends Scheduler {
         AtomicInteger count = new AtomicInteger();
         Bukkit.getServer().getWorlds().forEach(world -> {
             // 白名单世界
-            for (String s : ResolveLagConstant.RESOLVE_LAG_WHITE_WORLD) {
+            for (String s : FileResolveLag.RESOLVE_LAG_WHITE_WORLD) {
                 if (!s.equalsIgnoreCase(world.getName()))
                     continue;
 
@@ -124,14 +124,14 @@ public class ResolveLagScheduler extends Scheduler {
             }
 
             // 判断是否达到上限值
-            if (ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_ENABLE && world.getEntities().size() < ResolveLagConstant.RESOLVE_LAG_ENTITY_TOTAL_LIMIT)
+            if (FileResolveLag.RESOLVE_LAG_ENTITY_TOTAL_ENABLE && world.getEntities().size() < FileResolveLag.RESOLVE_LAG_ENTITY_TOTAL_LIMIT)
                 return;
 
             world.getEntities().forEach(entity -> {
                 if (entity instanceof Item) {
                     Item item = (Item) entity;
                     // 判断是否为特殊物品
-                    for (String s : ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ITEM) {
+                    for (String s : FileResolveLag.RESOLVE_LAG_ENTITY_SPECIAL_ITEM) {
                         if (!item.getItemStack().getType().getKey().toString().equalsIgnoreCase(s))
                             continue;
 
@@ -149,7 +149,7 @@ public class ResolveLagScheduler extends Scheduler {
                         return;
 
                     // 判断是否为特殊实体
-                    for (String s : ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_ENTITY) {
+                    for (String s : FileResolveLag.RESOLVE_LAG_ENTITY_SPECIAL_ENTITY) {
                         try {
                             if (!entity.getType().getKey().toString().equalsIgnoreCase(s))
                                 continue;
@@ -163,15 +163,15 @@ public class ResolveLagScheduler extends Scheduler {
                     }
 
                     // 特殊动作
-                    if (!ResolveLagConstant.RESOLVE_LAG_ENTITY_SPECIAL_POSE && entity.getPose() != Pose.STANDING)
+                    if (!FileResolveLag.RESOLVE_LAG_ENTITY_SPECIAL_POSE && entity.getPose() != Pose.STANDING)
                         return;
 
                     // 自定义名称
-                    if (!ResolveLagConstant.RESOLVE_LAG_ENTITY_NAMED && entity.getCustomName() != null)
+                    if (!FileResolveLag.RESOLVE_LAG_ENTITY_NAMED && entity.getCustomName() != null)
                         return;
 
                     // 是否为宠物
-                    if (!ResolveLagConstant.RESOLVE_LAG_ENTITY_PET && entity instanceof Tameable) {
+                    if (!FileResolveLag.RESOLVE_LAG_ENTITY_PET && entity instanceof Tameable) {
                         Tameable tameable = (Tameable) entity;
 
                         if (tameable.isTamed())
@@ -187,13 +187,13 @@ public class ResolveLagScheduler extends Scheduler {
     }
 
     public int clearChunk() {
-        if (!ResolveLagConstant.RESOLVE_LAG_CHUNK_ENABLE)
+        if (!FileResolveLag.RESOLVE_LAG_CHUNK_ENABLE)
             return 0;
 
         AtomicInteger count = new AtomicInteger();
         Bukkit.getServer().getWorlds().forEach(world -> {
             // 白名单世界
-            for (String s : ResolveLagConstant.RESOLVE_LAG_WHITE_WORLD) {
+            for (String s : FileResolveLag.RESOLVE_LAG_WHITE_WORLD) {
                 if (!s.equalsIgnoreCase(world.getName()))
                     continue;
 

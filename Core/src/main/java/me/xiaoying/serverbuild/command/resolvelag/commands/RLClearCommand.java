@@ -2,10 +2,10 @@ package me.xiaoying.serverbuild.command.resolvelag.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ResolveLagEntity;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileResolveLag;
 import me.xiaoying.serverbuild.module.ResolveLagModule;
 import me.xiaoying.serverbuild.scheduler.ResolveLagScheduler;
 import me.xiaoying.serverbuild.utils.ListUtil;
@@ -20,9 +20,9 @@ public class RLClearCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(ResolveLagConstant.MESSAGE_HELP)
-                .prefix(ResolveLagConstant.SETTING_PREFIX)
-                .date(ResolveLagConstant.SETTING_DATEFORMAT)
+        list.add(new VariableFactory(FileResolveLag.MESSAGE_HELP)
+                .prefix(FileResolveLag.SETTING_PREFIX)
+                .date(FileResolveLag.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;
@@ -31,9 +31,9 @@ public class RLClearCommand extends SCommand {
     @Override
     public void performCommand(CommandSender sender, String[] strings) {
         if (!ServerUtil.hasPermission(sender, "sb.admin", "sb.rl.admin") && !sender.isOp()) {
-            sender.sendMessage(new VariableFactory(ResolveLagConstant.MESSAGE_MISSING_PERMISSION)
-                    .prefix(ResolveLagConstant.SETTING_PREFIX)
-                    .date(ResolveLagConstant.SETTING_DATEFORMAT)
+            sender.sendMessage(new VariableFactory(FileResolveLag.MESSAGE_MISSING_PERMISSION)
+                    .prefix(FileResolveLag.SETTING_PREFIX)
+                    .date(FileResolveLag.SETTING_DATEFORMAT)
                     .color()
                     .toString());
             return;
@@ -78,8 +78,8 @@ public class RLClearCommand extends SCommand {
         assert entity != null;
         String message = entity.getMessage();
         ServerUtil.getOnlinePlayers().forEach(player -> player.sendMessage(new VariableFactory(message)
-                .prefix(ResolveLagConstant.SETTING_PREFIX)
-                .date(ResolveLagConstant.SETTING_DATEFORMAT)
+                .prefix(FileResolveLag.SETTING_PREFIX)
+                .date(FileResolveLag.SETTING_DATEFORMAT)
                 .entities(entitiesCount)
                 .chunks(chunksCount)
                 .amount(count)

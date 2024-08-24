@@ -2,8 +2,8 @@ package me.xiaoying.serverbuild.command.resolvelag.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileResolveLag;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -18,9 +18,9 @@ public class RLStateCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(ResolveLagConstant.MESSAGE_HELP)
-                .prefix(ResolveLagConstant.SETTING_PREFIX)
-                .date(ResolveLagConstant.SETTING_DATEFORMAT)
+        list.add(new VariableFactory(FileResolveLag.MESSAGE_HELP)
+                .prefix(FileResolveLag.SETTING_PREFIX)
+                .date(FileResolveLag.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;
@@ -29,9 +29,9 @@ public class RLStateCommand extends SCommand {
     @Override
     public void performCommand(CommandSender sender, String[] strings) {
         if (!ServerUtil.hasPermission(sender, "sb.admin", "sb.rl.admin") && !sender.isOp()) {
-            sender.sendMessage(new VariableFactory(ResolveLagConstant.MESSAGE_MISSING_PERMISSION)
-                    .prefix(ResolveLagConstant.SETTING_PREFIX)
-                    .date(ResolveLagConstant.SETTING_DATEFORMAT)
+            sender.sendMessage(new VariableFactory(FileResolveLag.MESSAGE_MISSING_PERMISSION)
+                    .prefix(FileResolveLag.SETTING_PREFIX)
+                    .date(FileResolveLag.SETTING_DATEFORMAT)
                     .color()
                     .toString());
             return;
@@ -39,17 +39,17 @@ public class RLStateCommand extends SCommand {
 
         World world = Bukkit.getWorld(strings[0]);
         if (world == null) {
-            sender.sendMessage(new VariableFactory(ResolveLagConstant.MESSAGE_UNKNOWN_WORLD)
-                    .prefix(ResolveLagConstant.SETTING_PREFIX)
-                    .date(ResolveLagConstant.SETTING_DATEFORMAT)
+            sender.sendMessage(new VariableFactory(FileResolveLag.MESSAGE_UNKNOWN_WORLD)
+                    .prefix(FileResolveLag.SETTING_PREFIX)
+                    .date(FileResolveLag.SETTING_DATEFORMAT)
                     .color()
                     .toString());
             return;
         }
 
-        sender.sendMessage(new VariableFactory(ResolveLagConstant.MESSAGE_WORLD_STATE)
-                .prefix(ResolveLagConstant.SETTING_PREFIX)
-                .date(ResolveLagConstant.SETTING_DATEFORMAT)
+        sender.sendMessage(new VariableFactory(FileResolveLag.MESSAGE_WORLD_STATE)
+                .prefix(FileResolveLag.SETTING_PREFIX)
+                .date(FileResolveLag.SETTING_DATEFORMAT)
                 .world(world)
                 .chunks(world.getLoadedChunks().length)
                 .entities(world.getEntities().size())

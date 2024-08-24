@@ -1,7 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
 import me.xiaoying.serverbuild.command.resolvelag.ResolveLagCommand;
-import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 import me.xiaoying.serverbuild.entity.ResolveLagEntity;
 import me.xiaoying.serverbuild.file.FileResolveLag;
 import me.xiaoying.serverbuild.scheduler.ResolveLagScheduler;
@@ -25,7 +24,7 @@ public class ResolveLagModule extends Module {
 
     @Override
     public boolean ready() {
-        return ResolveLagConstant.ENABLE;
+        return FileResolveLag.ENABLE;
     }
 
     @Override
