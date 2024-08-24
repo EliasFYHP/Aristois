@@ -1,6 +1,6 @@
 package me.xiaoying.serverbuild.module;
 
-import me.xiaoying.serverbuild.constant.FileMonitorConstant;
+import me.xiaoying.serverbuild.file.FileFileMonitor;
 import me.xiaoying.serverbuild.listener.FileMonitorListener;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.apache.commons.io.monitor.FileAlterationListener;
@@ -31,7 +31,7 @@ public class FileMonitorModule extends Module {
 
     @Override
     public boolean ready() {
-        return FileMonitorConstant.ENABLE;
+        return FileFileMonitor.ENABLE;
     }
 
     @Override

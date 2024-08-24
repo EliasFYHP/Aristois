@@ -1,7 +1,7 @@
 package me.xiaoying.serverbuild.listener;
 
-import me.xiaoying.serverbuild.constant.FileMonitorConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
+import me.xiaoying.serverbuild.file.FileFileMonitor;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
 import org.bukkit.Bukkit;
 
@@ -24,7 +24,7 @@ public class FileMonitorListener extends FileAlterationListenerAdaptor {
                 module.reload();
 
                 // script
-                FileMonitorConstant.FILE_MONITOR_EVENT.forEach(script -> SBPlugin.getScriptManager().performScript(script, Bukkit.getServer().getConsoleSender()));
+                FileFileMonitor.FILE_MONITOR_EVENT.forEach(script -> SBPlugin.getScriptManager().performScript(script, Bukkit.getServer().getConsoleSender()));
             }
         });
     }
