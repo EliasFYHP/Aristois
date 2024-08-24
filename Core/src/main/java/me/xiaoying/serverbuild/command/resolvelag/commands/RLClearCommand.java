@@ -2,7 +2,6 @@ package me.xiaoying.serverbuild.command.resolvelag.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ResolveLagEntity;
@@ -22,8 +21,8 @@ public class RLClearCommand extends SCommand {
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
         list.add(new VariableFactory(ResolveLagConstant.MESSAGE_HELP)
-                .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
-                .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
+                .prefix(ResolveLagConstant.SETTING_PREFIX)
+                .date(ResolveLagConstant.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;

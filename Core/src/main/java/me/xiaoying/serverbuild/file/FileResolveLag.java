@@ -1,6 +1,5 @@
 package me.xiaoying.serverbuild.file;
 
-import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ public class FileResolveLag extends File {
     public void onLoad() {
         ResolveLagConstant.ENABLE = this.getConfiguration().getBoolean("Enable");
 
-        ResolveLagConstant.SETTING_DATEFORMAT = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
-        ResolveLagConstant.SETTING_PREFIX = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_VARIABLE_ENABLE ? ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
+        ResolveLagConstant.SETTING_DATEFORMAT = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_VARIABLE_ENABLE ? FileConfig.OVERALL_SITUATION_VARIABLE_DATEFORAMT : this.getConfiguration().getString("Setting.DateFormat");
+        ResolveLagConstant.SETTING_PREFIX = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_VARIABLE_ENABLE ? FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX : this.getConfiguration().getString("Setting.Prefix");
 
         ResolveLagConstant.RESOLVE_LAG_SECOND_TIME = this.getConfiguration().getInt("ResolveLag.SecondTime");
 
@@ -55,9 +54,9 @@ public class FileResolveLag extends File {
 
         ResolveLagConstant.CLEAR_MESSAGE_COUNT_DOWN = this.getConfiguration().getString("ClearMessage.CountDown");
 
-        ResolveLagConstant.MESSAGE_RELOAD = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
-        ResolveLagConstant.MESSAGE_MISSING_PERMISSION = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
-        ResolveLagConstant.MESSAGE_HELP = ConfigConstant.OVERALL_SITUATION_ENABLE && ConfigConstant.OVERALL_SITUATION_MESSAGE_ENABLE ? ConfigConstant.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
+        ResolveLagConstant.MESSAGE_RELOAD = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_RELOAD : this.getConfiguration().getString("Message.Reload");
+        ResolveLagConstant.MESSAGE_MISSING_PERMISSION = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION : this.getConfiguration().getString("Message.MissingPermission");
+        ResolveLagConstant.MESSAGE_HELP = FileConfig.OVERALL_SITUATION_ENABLE && FileConfig.OVERALL_SITUATION_MESSAGE_ENABLE ? FileConfig.OVERALL_SITUATION_MESSAGE_HELP : this.getConfiguration().getString("Message.Help");
 
         ResolveLagConstant.MESSAGE_UNKNOWN_WORLD = this.getConfiguration().getString("Message.UnknownWorld");
         ResolveLagConstant.MESSAGE_WORLD_STATE = this.getConfiguration().getString("Message.WorldState");

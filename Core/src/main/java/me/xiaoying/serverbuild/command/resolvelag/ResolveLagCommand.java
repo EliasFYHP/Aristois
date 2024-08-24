@@ -6,7 +6,6 @@ import me.xiaoying.serverbuild.command.SCommand;
 import me.xiaoying.serverbuild.command.resolvelag.commands.RLClearCommand;
 import me.xiaoying.serverbuild.command.resolvelag.commands.RLReloadCommand;
 import me.xiaoying.serverbuild.command.resolvelag.commands.RLStateCommand;
-import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.constant.ResolveLagConstant;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import org.bukkit.command.CommandSender;
@@ -28,8 +27,8 @@ public class ResolveLagCommand extends SCommand {
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
         list.add(new VariableFactory(ResolveLagConstant.MESSAGE_HELP)
-                .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
-                .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
+                .prefix(ResolveLagConstant.SETTING_PREFIX)
+                .date(ResolveLagConstant.SETTING_DATEFORMAT)
                 .color()
                 .toString());
         return list;

@@ -1,8 +1,8 @@
 package me.xiaoying.serverbuild.script;
 
-import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileConfig;
 import me.xiaoying.serverbuild.script.interpreter.InterpreterManager;
 import me.xiaoying.serverbuild.script.interpreter.SimpleInterpreterManager;
 import me.xiaoying.serverbuild.script.scripts.ConsoleScript;
@@ -54,8 +54,8 @@ public class SimpleScriptManager implements ScriptManager {
 
     private void callScript(String command, CommandSender sender) {
         command = new VariableFactory(command)
-                .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
-                .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
+                .date(FileConfig.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
+                .prefix(FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX)
                 .color()
                 .toString();
         if (sender instanceof Player)
@@ -83,7 +83,7 @@ public class SimpleScriptManager implements ScriptManager {
                 return;
 
             if (strings.length == 1 && strings[0].equalsIgnoreCase(command)) {
-                ServerUtil.sendMessage(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX + "&c未知命令 &e" + head + " &c，请检查命令名称");
+                ServerUtil.sendMessage(FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX + "&c未知命令 &e" + head + " &c，请检查命令名称");
                 return;
             }
 

@@ -2,9 +2,9 @@ package me.xiaoying.serverbuild.command.serverbuild.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.ConfigConstant;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
+import me.xiaoying.serverbuild.file.FileConfig;
 import me.xiaoying.serverbuild.utils.ServerUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -18,9 +18,9 @@ public class SBScriptCommand extends SCommand {
     @Override
     public List<String> getHelpMessage() {
         List<String> list = new ArrayList<>();
-        list.add(new VariableFactory(ConfigConstant.OVERALL_SITUATION_MESSAGE_HELP)
-                .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
-                .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
+        list.add(new VariableFactory(FileConfig.OVERALL_SITUATION_MESSAGE_HELP)
+                .prefix(FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX)
+                .date(FileConfig.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
                 .color()
                 .toString());
         return list;
@@ -29,18 +29,18 @@ public class SBScriptCommand extends SCommand {
     @Override
     public void performCommand(CommandSender sender, String[] args) {
         if (!ServerUtil.hasPermission(sender, "sb.admin", "sb.script") && !sender.isOp()) {
-            sender.sendMessage(new VariableFactory(ConfigConstant.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION)
-                            .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
-                            .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
+            sender.sendMessage(new VariableFactory(FileConfig.OVERALL_SITUATION_MESSAGE_MISSING_PERMISSION)
+                            .prefix(FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX)
+                            .date(FileConfig.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
                             .color()
                             .toString());
             return;
         }
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(new VariableFactory(ConfigConstant.OVERALL_SITUATION_MESSAGE_NEED_PLAYER)
-                            .prefix(ConfigConstant.OVERALL_SITUATION_VARIABLE_PREFIX)
-                            .date(ConfigConstant.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
+            sender.sendMessage(new VariableFactory(FileConfig.OVERALL_SITUATION_MESSAGE_NEED_PLAYER)
+                            .prefix(FileConfig.OVERALL_SITUATION_VARIABLE_PREFIX)
+                            .date(FileConfig.OVERALL_SITUATION_VARIABLE_DATEFORAMT)
                             .color()
                             .toString());
             return;
