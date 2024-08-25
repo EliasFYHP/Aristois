@@ -1,6 +1,5 @@
 package me.xiaoying.serverbuild.listener;
 
-import me.xiaoying.serverbuild.constant.ConstantCommon;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.entity.ChatFormatEntity;
 import me.xiaoying.serverbuild.factory.VariableFactory;
@@ -49,7 +48,7 @@ public class ChatFormatListener implements Listener {
         if (run.size() != 0 && run.get(0).getRecords().size() != 0) {
             String over = (String) run.get(0).getRecords().get(0).get("over");
             long lastTime;
-            if ((lastTime = DateUtil.getDateReduce(over, DateUtil.getDate(ConstantCommon.DATE_FORMAT), ConstantCommon.DATE_FORMAT)) > 0) {
+            if ((lastTime = DateUtil.getDateReduce(over, DateUtil.getDate(FileChatFormat.SETTING_DATEFORMAT), FileChatFormat.SETTING_DATEFORMAT)) > 0) {
                 player.sendMessage(new VariableFactory(FileChatFormat.MUTE_MESSAGE)
                         .prefix(FileChatFormat.SETTING_PREFIX)
                         .date(FileChatFormat.SETTING_DATEFORMAT)

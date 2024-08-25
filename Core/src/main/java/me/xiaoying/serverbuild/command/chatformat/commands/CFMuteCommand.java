@@ -2,7 +2,6 @@ package me.xiaoying.serverbuild.command.chatformat.commands;
 
 import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
-import me.xiaoying.serverbuild.constant.ConstantCommon;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.factory.VariableFactory;
 import me.xiaoying.serverbuild.file.FileChatFormat;
@@ -49,7 +48,7 @@ public class CFMuteCommand extends SCommand {
         ChatFormatModule.createTables();
 
         Player player = Bukkit.getServer().getPlayerExact(strings[0]);
-        String save = DateUtil.getDate(ConstantCommon.DATE_FORMAT);
+        String save = DateUtil.getDate(FileChatFormat.SETTING_DATEFORMAT);
         Date date;
         String over;
         if (strings.length == 1)
@@ -66,7 +65,7 @@ public class CFMuteCommand extends SCommand {
             return;
         }
 
-        over = DateUtil.getDate(DateUtil.getDate(date, ConstantCommon.DATE_FORMAT));
+        over = DateUtil.getDate(DateUtil.getDate(date, FileChatFormat.SETTING_DATEFORMAT));
 
         if (player == null) {
             sender.sendMessage(new VariableFactory(FileChatFormat.MESSAGE_NOT_FOUND_PLAYER)
@@ -86,7 +85,7 @@ public class CFMuteCommand extends SCommand {
 
 
         // calculate time
-        long lastTime = DateUtil.getDateReduce(over, save, ConstantCommon.DATE_FORMAT) / 1000;
+        long lastTime = DateUtil.getDateReduce(over, save, FileChatFormat.SETTING_DATEFORMAT) / 1000;
         player.sendMessage(new VariableFactory(FileChatFormat.MUTE_MESSAGE)
                         .prefix(FileChatFormat.SETTING_PREFIX)
                         .date(FileChatFormat.SETTING_DATEFORMAT)
