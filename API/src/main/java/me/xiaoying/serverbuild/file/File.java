@@ -4,23 +4,18 @@ import me.xiaoying.serverbuild.core.SBPlugin;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public abstract class File {
+    private final String path;
     private final java.io.File file;
     private YamlConfiguration configuration;
 
     public File(String file) {
         this.file = new java.io.File(SBPlugin.getInstance().getDataFolder(), file);
+        this.path = file;
     }
 
     public File(String path, String name) {
-//        java.io.File dataFolder = new java.io.File(path);
-//        if (!dataFolder.exists())
-//            dataFolder.mkdirs();
-//
-//        if (!dataFolder.isDirectory())
-//            throw new RuntimeException("\"" + path + "\" is not a directory");
-//
-//        this.file = new java.io.File(path, name);
         this.file = new java.io.File(path, name);
+        this.path = name;
     }
 
     public java.io.File getParent() {
@@ -40,7 +35,12 @@ public abstract class File {
     }
 
     public void load() {
-        if (!this.file.exists()) SBPlugin.getInstance().saveResource(this.file.getName(), false);
+        if (!this.file.exists()) {
+            if (this.path.contains("/"))
+                SBPlugin.getInstance().saveResource(this.path, false);
+            else
+                SBPlugin.getInstance().saveResource(this.file.getName(), false);
+        }
         this.configuration = YamlConfiguration.loadConfiguration(this.file);
         this.onLoad();
     }
