@@ -9,6 +9,7 @@ import java.util.List;
 
 public abstract class Gui implements Cloneable {
     private String name;
+    private String displayName;
     private List<Component> components = new ArrayList<>();
     private int height;
 
@@ -20,9 +21,25 @@ public abstract class Gui implements Cloneable {
         return this.name;
     }
 
-    public Gui setName(String name) {
-        this.name = name;
+    /**
+     * Set alias of gui<br>
+     * If you want to get this gui, you can use exact name of gui
+     *
+     * @param name alias name
+     * @return Gui
+     */
+    public Gui setDisplayName(String name) {
+        this.displayName = name;
         return this;
+    }
+
+    /**
+     * Get alias of gui to use inventory title<br>
+     *
+     * @return String
+     */
+    public String getDisplayName() {
+        return this.displayName;
     }
 
     public Component getComponent(int x, int y) {
@@ -75,7 +92,11 @@ public abstract class Gui implements Cloneable {
     }
 
     public Inventory getInventory() {
-        Inventory inventory = Bukkit.createInventory(null, this.height * 9, this.getName());
+        Inventory inventory;
+        if (this.getDisplayName() == null)
+            inventory = Bukkit.createInventory(null, this.height * 9, this.getName());
+        else
+            inventory = Bukkit.createInventory(null, this.height * 9, this.getDisplayName());
         this.components.forEach(component -> {
             if (component.getY() > 5 || component.getY() > 8)
                 return;
