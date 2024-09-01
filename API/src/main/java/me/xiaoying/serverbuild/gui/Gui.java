@@ -17,6 +17,11 @@ public abstract class Gui implements Cloneable {
         this.name = name;
     }
 
+    /**
+     * Get gui name in gui manager
+     *
+     * @return
+     */
     public String getName() {
         return this.name;
     }
@@ -42,6 +47,13 @@ public abstract class Gui implements Cloneable {
         return this.displayName;
     }
 
+    /**
+     * Get component by position
+     *
+     * @param x x-axis
+     * @param y y-axis
+     * @return Component
+     */
     public Component getComponent(int x, int y) {
         for (Component component : this.components) {
             if (component.getX() != x || component.getY() != y)
@@ -52,20 +64,44 @@ public abstract class Gui implements Cloneable {
         return null;
     }
 
+    /**
+     * Get all component
+     *
+     * @return components
+     */
     public List<Component> getComponents() {
         return this.components;
     }
 
+    /**
+     * Add new component to this gui
+     *
+     * @param component Component
+     * @return Gui
+     */
     public Gui addComponent(Component component) {
         this.components.add(component);
         return this;
     }
 
+    /**
+     * Remove component
+     *
+     * @param component Component
+     * @return Gui
+     */
     public Gui removeComponent(Component component) {
         this.components.remove(component);
         return this;
     }
 
+    /**
+     * Remove component by position
+     *
+     * @param x x-axis
+     * @param y y-axis
+     * @return
+     */
     public Gui removeComponent(int x, int y) {
         Iterator<Component> iterator = this.components.iterator();
         Component component;
@@ -80,10 +116,21 @@ public abstract class Gui implements Cloneable {
         return this;
     }
 
+    /**
+     * Get height of gui<br>
+     *
+     * @return int
+     */
     public int getHeight() {
         return this.height;
     }
 
+    /**
+     * Set height of gui<br>
+     * Height range is 1 to 6
+     *
+     * @param height
+     */
     public void setHeight(int height) {
         if (height < 0 || height > 6)
             throw new RuntimeException(new IllegalArgumentException("GUI height need between 1 and 6."));
@@ -91,6 +138,11 @@ public abstract class Gui implements Cloneable {
         this.height = height;
     }
 
+    /**
+     * Get inventory by gui
+     *
+     * @return Inventory
+     */
     public Inventory getInventory() {
         Inventory inventory;
         if (this.getDisplayName() == null)
@@ -116,7 +168,7 @@ public abstract class Gui implements Cloneable {
         }
     }
 
-    public <T extends Gui> T backup() {
+    protected <T extends Gui> T backup() {
         return (T) this.clone();
     }
 }
