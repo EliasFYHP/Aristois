@@ -4,6 +4,7 @@ import me.xiaoying.serverbuild.command.Command;
 import me.xiaoying.serverbuild.command.SCommand;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.file.File;
+import me.xiaoying.serverbuild.gui.Gui;
 import me.xiaoying.serverbuild.scheduler.Scheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,6 +17,7 @@ import java.util.List;
 public abstract class Module {
     private boolean opened = false;
 
+    private final List<Gui> guis = new ArrayList<>();
     private final List<File> files = new ArrayList<>();
     private final List<SCommand> commands = new ArrayList<>();
     private final List<Listener> listeners = new ArrayList<>();
@@ -41,6 +43,38 @@ public abstract class Module {
      * @return Boolean
      */
     public abstract boolean ready();
+
+    /**
+     * Register gui
+     *
+     * @param gui Gui
+     */
+    public void registerGui(Gui gui) {
+        if (this.guis.contains(gui))
+            return;
+
+        this.guis.add(gui);
+    }
+
+    /**
+     * Unregister gui
+     *
+     * @param gui Gui
+     */
+    public void unregisterGui(Gui gui) {
+        if (!this.guis.contains(gui))
+            return;
+
+        SBPlugin.getGuiManager().unregisterGui(gui.getName());
+        this.guis.remove(gui);
+    }
+
+    /**
+     * Unregister all gui
+     */
+    public void unregisterGuis() {
+        this.guis.forEach(gui -> SBPlugin.getGuiManager().unregisterGui(gui.getName()));
+    }
 
     /**
      * Determine whether to activated
@@ -87,6 +121,7 @@ public abstract class Module {
         if (!this.listeners.contains(listener))
             return;
 
+        this.listeners.remove(listener);
         HandlerList.unregisterAll(listener);
     }
 
@@ -236,6 +271,8 @@ public abstract class Module {
         });
         // scheduler
         this.schedulers.forEach(Scheduler::run);
+        // gui
+        this.guis.forEach(SBPlugin.getGuiManager()::registerGui);
 
         this.opened = true;
         this.onEnable();
@@ -244,6 +281,8 @@ public abstract class Module {
     public void disable() {
         this.onDisable();
 
+        // unregister gui
+        this.guis.forEach(this::unregisterGui);
         // unregister Scheduler
         this.schedulers.forEach(Scheduler::stop);
         this.schedulers.clear();
