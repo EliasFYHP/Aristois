@@ -1,13 +1,24 @@
 package me.xiaoying.serverbuild.gui;
 
+import me.xiaoying.serverbuild.utils.ServerUtil;
+import org.bukkit.event.Listener;
 import org.bukkit.inventory.InventoryHolder;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SimpleGuiManager implements GuiManager {
+    private Listener listener = new GuiListener();
     private final Map<String, Gui> guis = new HashMap<>();
     private final Map<InventoryHolder, Gui> cacheGui = new HashMap<>();
+
+    public SimpleGuiManager() {
+        ServerUtil.registerEvent(this.listener);
+    }
+
+    public void unInitialize() {
+        ServerUtil.unregisterListener(this.listener);
+    }
 
     public void registerGui(Gui gui) {
         this.guis.put(gui.getName(), gui);

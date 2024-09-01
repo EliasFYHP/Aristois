@@ -101,5 +101,8 @@ public class ServerBuild extends JavaPlugin {
         // Module
         SBPlugin.getModuleManager().disableModules();
         SBPlugin.getModuleManager().unregisterModules();
+
+        // unregister manager
+        ((SimpleGuiManager) SBPlugin.getGuiManager()).unInitialize();
     }
 }
