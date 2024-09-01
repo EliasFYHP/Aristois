@@ -1,10 +1,12 @@
 package me.xiaoying.serverbuild.gui;
 
 import me.xiaoying.serverbuild.utils.ServerUtil;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.InventoryHolder;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class SimpleGuiManager implements GuiManager {
@@ -35,6 +37,15 @@ public class SimpleGuiManager implements GuiManager {
      */
     public void unregisterGui(String name) {
         this.guis.remove(name);
+
+        Iterator<Gui> iterator = this.cacheGui.values().iterator();
+        Gui gui;
+        while (iterator.hasNext() && (gui = iterator.next()) != null) {
+            if (!gui.getName().equalsIgnoreCase(name))
+                continue;
+
+            iterator.remove();
+        }
     }
 
     /**
@@ -42,6 +53,7 @@ public class SimpleGuiManager implements GuiManager {
      */
     public void unregisterGuis() {
         this.guis.clear();
+        this.cacheGui.values().forEach(holder -> holder.getInventory().getViewers().forEach(HumanEntity::closeInventory));
     }
 
     /**
@@ -70,5 +82,6 @@ public class SimpleGuiManager implements GuiManager {
      */
     public void removeCacheGui(InventoryHolder holder) {
         this.cacheGui.remove(holder);
+        holder.getInventory().getViewers().forEach(HumanEntity::closeInventory);
     }
 }
