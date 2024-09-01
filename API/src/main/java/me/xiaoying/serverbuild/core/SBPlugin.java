@@ -2,6 +2,7 @@ package me.xiaoying.serverbuild.core;
 
 import me.xiaoying.serverbuild.file.FileManager;
 import me.xiaoying.serverbuild.file.SimpleFileManager;
+import me.xiaoying.serverbuild.gui.GuiManager;
 import me.xiaoying.serverbuild.module.ModuleManager;
 import me.xiaoying.serverbuild.module.SimpleModuleManager;
 import me.xiaoying.serverbuild.script.ScriptManager;
@@ -21,8 +22,9 @@ import java.util.Map;
 public class SBPlugin {
     private static JavaPlugin instance;
     private static ScriptManager scriptManager;
-    private static FileManager fileManager = new SimpleFileManager();
-    private static ModuleManager moduleManager = new SimpleModuleManager();
+    private static GuiManager guiManager;
+    private static FileManager fileManager;
+    private static ModuleManager moduleManager;
     private static SqlFactory sqlFactory;
 
     public static JavaPlugin getInstance() {
@@ -31,6 +33,10 @@ public class SBPlugin {
 
     public static void setInstance(JavaPlugin plugin) {
         instance = plugin;
+
+        SBPlugin.guiManager = new GuiManager();
+        SBPlugin.fileManager = new SimpleFileManager();
+        SBPlugin.moduleManager = new SimpleModuleManager();
     }
 
     public static ScriptManager getScriptManager() {
@@ -53,6 +59,10 @@ public class SBPlugin {
             return;
 
         SBPlugin.moduleManager = moduleManager;
+    }
+
+    public static GuiManager getGuiManager() {
+        return SBPlugin.guiManager;
     }
 
     public static FileManager getFileManager() {
