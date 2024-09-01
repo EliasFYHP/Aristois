@@ -20,7 +20,7 @@ public abstract class Gui implements Cloneable {
     /**
      * Get gui name in gui manager
      *
-     * @return
+     * @return gui's name in gui manager
      */
     public String getName() {
         return this.name;
