@@ -23,6 +23,7 @@ public class ServerBuild extends JavaPlugin {
     @Override
     public void onEnable() {
         SBPlugin.setInstance(this);
+        SBPlugin.setGuiManager();
 
         initialize();
 

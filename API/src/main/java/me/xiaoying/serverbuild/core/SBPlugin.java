@@ -31,18 +31,32 @@ public class SBPlugin {
         return instance;
     }
 
+    /**
+     * Set plugin instance
+     *
+     * @param plugin JavaPlugin
+     */
     public static void setInstance(JavaPlugin plugin) {
         instance = plugin;
 
-        SBPlugin.guiManager = new GuiManager();
         SBPlugin.fileManager = new SimpleFileManager();
         SBPlugin.moduleManager = new SimpleModuleManager();
     }
 
+    /**
+     * Get manager of script
+     *
+     * @return ScriptManager
+     */
     public static ScriptManager getScriptManager() {
         return scriptManager;
     }
 
+    /**
+     * Set manager of script
+     *
+     * @param scriptManager ScriptManager
+     */
     public static void setScriptManager(ScriptManager scriptManager) {
         if (SBPlugin.scriptManager != null)
             return;
@@ -50,10 +64,20 @@ public class SBPlugin {
         SBPlugin.scriptManager = scriptManager;
     }
 
+    /**
+     * Get manager of module
+     *
+     * @return
+     */
     public static ModuleManager getModuleManager() {
         return moduleManager;
     }
 
+    /**
+     * Set manager of module
+     *
+     * @param moduleManager ModuleManager
+     */
     public static void setModuleManager(ModuleManager moduleManager) {
         if (SBPlugin.moduleManager != null)
             return;
@@ -61,14 +85,38 @@ public class SBPlugin {
         SBPlugin.moduleManager = moduleManager;
     }
 
+    /**
+     * Get gui manager
+     *
+     * @return GuiManager
+     */
     public static GuiManager getGuiManager() {
         return SBPlugin.guiManager;
     }
 
+    /**
+     * Set manager of gui
+     *
+     * @param guiManager GuiManager
+     */
+    public static void setGuiManager(GuiManager guiManager) {
+        SBPlugin.guiManager = guiManager;
+    }
+
+    /**
+     * Get manager of file
+     *
+     * @return FileManager
+     */
     public static FileManager getFileManager() {
         return fileManager;
     }
 
+    /**
+     * Set manager of file
+     *
+     * @param fileManager FileManager
+     */
     public static void setFileManager(FileManager fileManager) {
         if (SBPlugin.fileManager != null)
             return;

@@ -1,68 +1,55 @@
 package me.xiaoying.serverbuild.gui;
 
-import me.xiaoying.serverbuild.core.SBPlugin;
 import org.bukkit.inventory.InventoryHolder;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class GuiManager {
-    private final Map<String, Gui> guis = new HashMap<>();
-    private final Map<InventoryHolder, Gui> cacheGui = new HashMap<>();
-
-    public GuiManager() {
-        SBPlugin.getInstance().getServer().getPluginManager().registerEvents(new GuiListener(), SBPlugin.getInstance());
-    }
-
-    public void registerGui(Gui gui) {
-        this.guis.put(gui.getName(), gui);
-    }
-
-    public <T extends Gui> T getGui(String name) {
-        return this.guis.get(name).backup();
-    }
+public interface GuiManager {
+    /**
+     * Register Gui
+     *
+     * @param gui Gui
+     */
+    void registerGui(Gui gui);
 
     /**
-     * 取消注册 Gui
+     * Get gui by name
+     *
+     * @param name GUI名称
+     * @return GUI
+     * @param <T> Gui
+     */
+    <T extends Gui> T getGui(String name);
+
+    /**
+     * Unregister gui
      *
      * @param name Gui 名称
      */
-    public void unregisterGui(String name) {
-        this.guis.remove(name);
-    }
+    void unregisterGui(String name);
 
     /**
-     * 取消注册 Gui
+     * Unregister all gui
      */
-    public void unregisterGuis() {
-        this.guis.clear();
-    }
+    void unregisterGuis();
 
     /**
-     * 添加缓存 Gui
+     * Add gui to cache
      *
      * @param holder InventoryHolder
      * @param gui Gui
      */
-    public void addCacheGui(InventoryHolder holder, Gui gui) {
-        this.cacheGui.put(holder, gui);
-    }
+    void addCacheGui(InventoryHolder holder, Gui gui);
 
     /**
-     * 获取缓存 Gui
+     * Get gui in cache
      *
      * @param holder InventoryHolder
      */
-    public Gui getCacheGui(InventoryHolder holder) {
-        return this.cacheGui.get(holder);
-    }
+    Gui getCacheGui(InventoryHolder holder);
 
     /**
-     * 移除缓存 Gui
+     * Remove gui in cache
      *
      * @param holder InventoryHolder
      */
-    public void removeCacheGui(InventoryHolder holder) {
-        this.cacheGui.remove(holder);
-    }
+    void removeCacheGui(InventoryHolder holder);
 }
