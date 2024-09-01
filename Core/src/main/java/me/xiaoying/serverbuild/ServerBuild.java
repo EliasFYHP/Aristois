@@ -4,6 +4,7 @@ import me.xiaoying.serverbuild.command.SCommand;
 import me.xiaoying.serverbuild.command.serverbuild.ServerBuildCommand;
 import me.xiaoying.serverbuild.core.SBPlugin;
 import me.xiaoying.serverbuild.file.FileConfig;
+import me.xiaoying.serverbuild.gui.SimpleGuiManager;
 import me.xiaoying.serverbuild.module.*;
 import me.xiaoying.serverbuild.script.SimpleScriptManager;
 import me.xiaoying.serverbuild.utils.PluginUtil;
@@ -23,7 +24,7 @@ public class ServerBuild extends JavaPlugin {
     @Override
     public void onEnable() {
         SBPlugin.setInstance(this);
-        SBPlugin.setGuiManager();
+        SBPlugin.setGuiManager(new SimpleGuiManager());
 
         initialize();
 
